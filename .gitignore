@@ -1,0 +1,31 @@
+# Browser data
+browser/openclaw/user-data/*
+!browser/openclaw/user-data/.gitkeep
+
+# Logs
+logs/**
+*.log
+
+# Backups
+*.bak*
+openclaw.json.bak*
+workspace-dev/
+
+# IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.temp
+*.reset.*
+
+# Sessions (optional - uncomment if you don't want to track sessions)
+# agents/main/sessions/*
+# identity/device-auth.json
