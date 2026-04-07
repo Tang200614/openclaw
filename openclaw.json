@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-04-02T03:05:48.068Z"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "bailianforcoding": {
+        "api": "anthropic-messages",
+        "apiKey": "sk-sp-670fcc82e5e141cb848115a826885159",
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+        "models": [
+          {
+            "id": "qwen3.5-plus",
+            "input": [
+              "text"
+            ],
+            "name": "qwen3.5-plus"
+          }
+        ]
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "91deeaa41ad906c7b2ada933e5d6fd291494e23b327bc7fb"
+    }
+  },
+  "mcp": {},
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "bailianforcoding/qwen3-coder-next"
+      }
+    }
+  }
+}

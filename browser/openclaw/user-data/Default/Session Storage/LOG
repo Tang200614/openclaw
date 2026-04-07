@@ -1,0 +1,8 @@
+2026/04/07-14:00:15.638 5268 Reusing MANIFEST C:\Users\Administrator\.openclaw\browser\openclaw\user-data\Default\Session Storage/MANIFEST-000001
+2026/04/07-14:00:15.638 5268 Recovering log #3
+2026/04/07-14:00:15.639 5268 Level-0 table #3: started
+2026/04/07-14:00:15.642 5268 Level-0 table #3: 24275 bytes OK
+2026/04/07-14:00:15.643 5268 Recovering log #4
+2026/04/07-14:00:15.647 5268 Reusing old log C:\Users\Administrator\.openclaw\browser\openclaw\user-data\Default\Session Storage/000004.log 
+2026/04/07-14:00:15.648 5268 Delete type=0 #3
+2026/04/07-14:00:15.648 5268 Delete type=2 #5
