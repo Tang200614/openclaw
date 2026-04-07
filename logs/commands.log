@@ -1,4 +1,0 @@
-{"timestamp":"2026-04-07T04:41:11.454Z","action":"new","sessionKey":"agent:main:main","senderId":"openclaw-control-ui","source":"webchat"}
-{"timestamp":"2026-04-07T05:56:38.088Z","action":"reset","sessionKey":"agent:main:main","senderId":"openclaw-control-ui","source":"webchat"}
-{"timestamp":"2026-04-07T08:42:50.820Z","action":"reset","sessionKey":"agent:main:main","senderId":"unknown","source":"gateway:sessions.reset"}
-{"timestamp":"2026-04-07T08:42:58.637Z","action":"new","sessionKey":"agent:main:main","senderId":"openclaw-control-ui","source":"webchat"}
