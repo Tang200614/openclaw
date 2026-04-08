@@ -1,38 +1,37 @@
 {
   "version": 2,
   "runs": {
-    "2881d624-6f58-4ab4-983a-df6ccc0d73fc": {
-      "runId": "2881d624-6f58-4ab4-983a-df6ccc0d73fc",
-      "childSessionKey": "agent:main:subagent:606c8a40-5699-488c-b3aa-374461a9e62f",
+    "91109bb9-72f4-4101-b7d6-9c12797127ce": {
+      "runId": "91109bb9-72f4-4101-b7d6-9c12797127ce",
+      "childSessionKey": "agent:main:subagent:d36d03dd-a458-49f6-ac2a-3252331b4a95",
       "controllerSessionKey": "agent:main:main",
       "requesterSessionKey": "agent:main:main",
       "requesterOrigin": {
-        "to": "heartbeat"
+        "channel": "webchat"
       },
       "requesterDisplayKey": "agent:main:main",
-      "task": "执行 airline-promo-searcher 技能：查询 21 家航空公司的最新优惠政策\n\n步骤：\n1. 读取 references/airlines_list.md 获取航司列表\n2. 使用 browser 工具打开固定搜索入口 https://www.google.com/search?q=&sourceid=chrome&ie=UTF-8&udm=50&aep=48&cud=0&qsubts=1770342683873&source=chrome.crn.obic\n3. 按优先级（P0→P1→P2）对每家航司执行 3-6 次 Google 搜索\n4. 提取有效优惠信息（优惠类型、内容、代码、有效期、来源链接）\n5. 将结果覆盖写入 references/promo_tracking.md\n6. 返回完整的 Markdown 汇总报告给用户\n\n注意：\n- 每家航司必须使用四列表格：| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |\n- 折扣码必须加粗显示\n- 每家航司必须包含官网链接\n- 仅允许写入 references/promo_tracking.md，不创建其他文件",
+      "task": "请执行航空优惠深度搜索任务。\n\n根据技能定义，你需要：\n1. 读取 ~/.openclaw/workspace/skills/airline-promo-searcher/references/airlines_list.md 中的 34 个搜索目标\n2. 按编号顺序逐个访问官网，搜索 /promotions /offers /deals /special-offers /sale /news 等路径\n3. 提取当前有效的优惠信息（优惠类型、优惠内容、有效期、来源链接）\n4. 将结果覆盖写入 ~/.openclaw/workspace/skills/airline-promo-searcher/references/promo_tracking.md\n5. 输出简洁纯文本摘要，包含：目标总数、更新日期、重点发现、追踪文件路径\n\n注意：\n- 优先访问官网，不依赖 web_search\n- 仅保留当前有效或明确有效期的优惠\n- 输出给用户的是纯文本摘要，不输出 Markdown\n- 必须写入 promo_tracking.md 文件\n\n请开始执行任务并返回执行结果。",
       "cleanup": "keep",
       "expectsCompletionMessage": true,
       "spawnMode": "run",
-      "label": "airline-promo-search",
-      "model": "bailianforcoding/qwen3.5-plus",
+      "model": "bailianforcoding/qwen3-coder-next",
       "workspaceDir": "C:\\Users\\Administrator\\.openclaw\\workspace",
-      "runTimeoutSeconds": 600,
-      "createdAt": 1775212517812,
-      "startedAt": 1775212518581,
-      "sessionStartedAt": 1775212517812,
+      "runTimeoutSeconds": 0,
+      "createdAt": 1775607701104,
+      "startedAt": 1775607701411,
+      "sessionStartedAt": 1775607701104,
       "accumulatedRuntimeMs": 0,
       "cleanupHandled": true,
       "retainAttachmentsOnKeep": false,
-      "endedAt": 1775212529670,
+      "endedAt": 1775607828849,
       "outcome": {
-        "status": "ok"
+        "status": "timeout"
       },
       "endedReason": "subagent-complete",
-      "frozenResultText": "Good, the browser is open. Now I need to take a snapshot to see the page state and then start searching for Thai Lion Air promotions. Let me get a snapshot of the page first.\n[tool_use id=toolu89cda742f96a4a758303b94 name=browser]\n{\"action\": \"snapshot\", \"targetId\": \"48478DC7F54F3FDC52EFCD28BBC5C8AF\"}\n\n[DUMMY_TOOL_RESULT]",
-      "frozenResultCapturedAt": 1775212529738,
-      "endedHookEmittedAt": 1775212538326,
-      "cleanupCompletedAt": 1775212538327
+      "frozenResultText": "[DUMMY_TOOL_RESULT]",
+      "frozenResultCapturedAt": 1775607828905,
+      "endedHookEmittedAt": 1775607841149,
+      "cleanupCompletedAt": 1775607841150
     }
   }
 }

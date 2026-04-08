@@ -1,24 +1,54 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-04-02T03:05:48.068Z"
+    "lastTouchedVersion": "2026.4.5",
+    "lastTouchedAt": "2026-04-08T03:22:15.164Z"
   },
   "models": {
     "mode": "merge",
     "providers": {
       "bailianforcoding": {
-        "api": "anthropic-messages",
-        "apiKey": "sk-sp-670fcc82e5e141cb848115a826885159",
         "baseUrl": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+        "apiKey": "sk-sp-670fcc82e5e141cb848115a826885159",
+        "api": "anthropic-messages",
         "models": [
           {
             "id": "qwen3.5-plus",
+            "name": "qwen3.5-plus",
             "input": [
               "text"
             ],
-            "name": "qwen3.5-plus"
+            "reasoning": false,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192,
+            "api": "anthropic-messages"
           }
         ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "bailianforcoding/qwen3-coder-next"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "tools": {
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "kimi",
+        "maxResults": 5
       }
     }
   },
@@ -36,11 +66,16 @@
     }
   },
   "mcp": {},
-  "agents": {
-    "defaults": {
-      "model": {
-        "primary": "bailianforcoding/qwen3-coder-next"
-      }
-    }
+  "plugins": {
+    "allow": ["dingtalk-connector"]
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "wizard": {
+    "lastRunAt": "2026-04-08T03:22:14.956Z",
+    "lastRunVersion": "2026.4.5",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
   }
 }

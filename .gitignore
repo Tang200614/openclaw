@@ -30,3 +30,14 @@ Thumbs.db
 # Sessions (optional - uncomment if you don't want to track sessions)
 # agents/main/sessions/*
 # identity/device-auth.json
+
+# Runtime session artifacts
+agents/main/sessions/*.jsonl
+agents/main/sessions/boot-*.jsonl
+
+# Runtime memory snapshots
+workspace/memory/*.md
+
+# SQLite runtime journals
+*.sqlite-wal
+*.sqlite-shm

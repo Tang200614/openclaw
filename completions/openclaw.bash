@@ -6,7 +6,7 @@ _openclaw_completion() {
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     
     # Simple top-level completion for now
-    opts="mcp completion setup onboard configure config backup doctor dashboard reset uninstall message agent agents status health sessions tasks acp gateway daemon logs system models approvals nodes devices node sandbox tui cron dns docs qa hooks webhooks qr clawbot browser memory pairing plugins channels directory security secrets skills update -V, --container --dev --profile --log-level --no-color"
+    opts="mcp completion setup onboard configure config backup doctor dashboard reset uninstall message agent agents status health sessions tasks acp gateway daemon logs system models approvals nodes devices node sandbox tui cron dns docs qa hooks webhooks qr clawbot pairing plugins channels directory security secrets skills update -V, --container --dev --profile --log-level --no-color"
     
     case "${prev}" in
       mcp)
@@ -196,16 +196,6 @@ _openclaw_completion() {
         ;;
       clawbot)
         opts="qr "
-        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
-        return 0
-        ;;
-      browser)
-        opts="status start stop reset-profile tabs tab open focus close profiles create-profile delete-profile screenshot snapshot navigate resize click type press hover scrollintoview drag select upload waitfordownload download dialog fill wait evaluate console pdf responsebody highlight errors requests trace cookies storage set --browser-profile --json --url --token --timeout --expect-final"
-        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
-        return 0
-        ;;
-      memory)
-        opts="status index search promote promote-explain rem-harness "
         COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
         return 0
         ;;

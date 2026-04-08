@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.2",
+    "lastTouchedAt": "2026-04-07T07:08:09.858Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-01T11:00:08.733Z",
+    "lastRunVersion": "2026.1.30",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ark": {
+        "baseUrl": "https://ark.cn-beijing.volces.com/api/coding/v3",
+        "apiKey": "bdfb66d3-3383-4e27-8478-ce803ace7af5",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-4.7",
+            "name": "glm-4.7",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192,
+            "headers": {
+              "X-Client-Request-Id": "ecs-openclaw/0304/i-yejht6p1xcobqblyb6bp"
+            },
+            "compat": {
+              "supportsDeveloperRole": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "ark/glm-4.7"
+      },
+      "models": {
+        "ark/glm-4.7": {}
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "dingtalk-connector": {
+      "enabled": true,
+      "clientId": "dingwt8xy0eacc51gr5c",
+      "clientSecret": "x3DJkPL-NT_qd5vloHvyBAqSEEsQXaQoUhEcfWQf9hIRvpDOCpy77MjCuFb2jG28",
+      "gatewayToken": "08d8374043ebc3aa1423a4b1ee7e7ed83ab00c159e3a9e75",
+      "sessionTimeout": 1800000
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "08d8374043ebc3aa1423a4b1ee7e7ed83ab00c159e3a9e75"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "http": {
+      "endpoints": {
+        "chatCompletions": {
+          "enabled": true
+        }
+      }
+    }
+  },
+    "tools": {
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "kimi",
+        "maxResults": 5
+      }
+    }
+  },
+  "plugins": {
+    "allow": ["dingtalk-connector", "wecom", "qqbot", "feishu-openclaw-plugin"],
+    "entries": {
+      "dingtalk-connector": {
+        "enabled": true
+      },
+      "wecom": {
+        "enabled": true
+      },
+      "qqbot": {
+        "enabled": true
+      },
+      "ai-assistant-security-openclaw": {
+        "enabled": false
+      },
+      "feishu": {
+        "enabled": false
+      },
+      "feishu-openclaw-plugin": {
+        "enabled": true
+      },
+      "tavily": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "apiKey": "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"
+          }
+        }
+      }
+    },
+    "installs": {
+      "dingtalk-connector": {
+        "source": "npm",
+        "spec": "https://github.com/DingTalk-Real-AI/dingtalk-moltbot-connector.git",
+        "installPath": "/root/.openclaw/extensions/dingtalk-connector",
+        "version": "0.6.0",
+        "installedAt": "2026-02-21T13:43:54.443Z"
+      },
+      "wecom": {
+        "source": "npm",
+        "spec": "@openclaw-china/wecom@latest",
+        "installPath": "/root/.openclaw/extensions/wecom",
+        "version": "2026.3.4-2",
+        "resolvedName": "@openclaw-china/wecom",
+        "resolvedVersion": "2026.3.4-2",
+        "resolvedSpec": "@openclaw-china/wecom@2026.3.4-2",
+        "integrity": "sha512-uKHkO7kPVFWLzMXRT+s/sXZyYuQX8fxC2CKes59hiV5Hw1NwJ78Tj15jlmXyDJoZ1L7keT5QAqc86rW+ayWyWw==",
+        "shasum": "005f77478b58eca287ab67d26a5d2fb1778b48d6",
+        "resolvedAt": "2026-03-04T14:50:33.304Z",
+        "installedAt": "2026-03-04T14:50:51.374Z"
+      },
+      "qqbot": {
+        "source": "path",
+        "sourcePath": "/root/qqbot",
+        "installPath": "/root/.openclaw/extensions/qqbot",
+        "version": "1.2.3",
+        "installedAt": "2026-02-03T09:14:05.915Z"
+      },
+      "ai-assistant-security-openclaw": {
+        "source": "npm",
+        "spec": "@omni-shield/ai-assistant-security-openclaw",
+        "installPath": "/root/.openclaw/extensions/ai-assistant-security-openclaw",
+        "version": "1.0.0",
+        "resolvedName": "@omni-shield/ai-assistant-security-openclaw",
+        "resolvedVersion": "1.0.0",
+        "resolvedSpec": "@omni-shield/ai-assistant-security-openclaw@1.0.0",
+        "integrity": "sha512-DtKymL9IxP9CXeZ5VU6CZqjKVJOqHsqGbqEuTy5oYy1VZJCjMFcTe67brpA5whe0T5uB9yoMF0uYcpEzkr0dtQ==",
+        "shasum": "b1a9adc689377f9bc441ebef188334518bfa926a",
+        "resolvedAt": "2026-03-04T14:50:52.543Z",
+        "installedAt": "2026-03-04T14:50:52.557Z"
+      },
+      "feishu-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@larksuiteoapi/feishu-openclaw-plugin",
+        "installPath": "/root/.openclaw/extensions/feishu-openclaw-plugin",
+        "version": "2026.3.5-beta.1",
+        "resolvedName": "@larksuiteoapi/feishu-openclaw-plugin",
+        "resolvedVersion": "2026.3.5-beta.1",
+        "resolvedSpec": "@larksuiteoapi/feishu-openclaw-plugin@2026.3.5-beta.1",
+        "integrity": "sha512-u9UCeav7biOYGkWDJktwCa8n9JnsHTz8lv13X7Ghxyjvj/alwExFcFRegYQmIBVOi636fooI+l607zfjKqBo1w==",
+        "shasum": "d320990b1c91603c582be3470d52f6f35c4f3a22",
+        "resolvedAt": "2026-03-04T14:53:33.162Z",
+        "installedAt": "2026-03-04T14:53:48.419Z"
+      }
+    }
+  }
+}
