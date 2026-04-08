@@ -5,7 +5,7 @@ browser/openclaw/user-data/*
 # Logs
 logs/**
 *.log
-*.node_modules/
+**/node_modules/
 
 # Backups
 *.bak*
