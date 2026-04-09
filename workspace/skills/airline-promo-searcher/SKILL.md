@@ -16,7 +16,7 @@ metadata:
 ## 执行总则
 
 1. 仅使用 `WebSearch` 执行检索；目标清单同步阶段允许直接请求航司接口。
-2. 先请求 `http://192.168.1.173:7001/servlet/ServiceServlet?method=getAirCompanyList&type=1` 同步航司基准；接口数据结构按 `TYPE/CHEAPBOAT/CODE/AIRCODE/SHORTNAME/BELONG/URL` 解析，再从 `workspace/skills/airline-promo-searcher/references/airlines_list.md` 读取目标清单并**按批次串行执行**（避免 LLM 空闲超时）。
+2. 先请求 `http://192.168.1.173:7001/servlet/ServiceServlet?method=getAirCompanyList&type=1` 同步航司基准，再从 `workspace/skills/airline-promo-searcher/references/airlines_list.md` 读取目标清单并**按批次串行执行**（避免 LLM 空闲超时）。
 3. 写入 `workspace/skills/airline-promo-searcher/references/promo_tracking.md` 时，任务开始先清空旧内容。
 4. **每完成一批次就立即追加写入一次**，不得等全部目标完成后再统一写入。
 5. 每完成一批次立即输出进度，避免触发 60 秒空闲超时。
@@ -59,30 +59,23 @@ metadata:
 1. 先请求 `http://192.168.1.173:7001/servlet/ServiceServlet?method=getAirCompanyList&type=1` 获取航司列表。
 2. 以接口返回为航司基准，更新 `workspace/skills/airline-promo-searcher/references/airlines_list.md` 后再读取字段。
 3. 若接口不可用，保留现有 `workspace/skills/airline-promo-searcher/references/airlines_list.md` 继续执行，并在结果中标记“航司基准未刷新”。
-4. 接口原始字段按以下结构识别：
-- TYPE
-- CHEAPBOAT
-- CODE
-- AIRCODE
-- SHORTNAME
-- BELONG
-- URL
-5. 保存后的目标字段必须与接口结构一致，不得丢字段或重命名：
+4. 保存后的目标字段按当前清单结构识别：
 - id
-- TYPE
-- CHEAPBOAT
-- CODE
-- AIRCODE
-- SHORTNAME
-- BELONG
-- URL
+- type
+- cheapboat
+- name
+- cn_name
+- keywords
+- category
+- website
+5. 字段以 `airlines_list.md` 当前结构为准，不做额外重命名。
 
 ### 步骤 2：构造 WebSearch 查询
 
-1. 以目标 `SHORTNAME`、`AIRCODE/CODE`、`URL`、`BELONG`、`CHEAPBOAT` 动态拼接查询词。
+1. 以目标 `name`、`cn_name`、`keywords`、`website`、`type`、`cheapboat` 动态拼接查询词。
 2. 单目标默认查询 1-2 次，最多不超过 4 次。
 3. 查询优先级：官网域名词 > 优惠词 > 年份词。
-4. 推荐组合：`SHORTNAME + promo/deal`、`AIRCODE + promotion`、`SHORTNAME + 促销/特价`、`SHORTNAME + BELONG + deal`、`官网域名 + offers`。
+4. 推荐组合：`name + promo/deal`、`cn_name + 促销/特价`、`name + cheapboat + promotion`、`name + type + deal`、`官网域名 + offers`。
 
 ### 步骤 3：执行搜索与提取（关键：避免超时）
 
@@ -118,14 +111,15 @@ metadata:
 
 ## 注意事项
 
-1. 接口字段必须完整保留：`TYPE/CHEAPBOAT/CODE/AIRCODE/SHORTNAME/BELONG/URL`；以这些字段为准，不做字段重命名或删减。
-2. 优先使用官网、航司新闻室、官方社媒、可信平台。
-3. 仅保留当前有效或有效期明确的优惠；无法确认时标记“需人工复核”。
-4. 必须写入 `workspace/skills/airline-promo-searcher/references/promo_tracking.md`，禁止创建 `workspace/skills/airline-promo-searcher/references/airline-promo-*.md`。
-5. 仅使用 `WebSearch`；每批次完成后必须输出 heartbeat 进度，避免空闲超时。
-6. 若 `WebSearch` 不可用，输出“本轮检索受限”并保留可验证来源。
-7. 结果展示优先级固定：先写文件模板，再回传 4 行摘要；不得输出自由发挥的长文本。
-8. 统一执行“先清空 + 分批追加”的单一路径，不使用续写模式分支。
+1. 目标清单字段以当前文件结构为准：`id/type/cheapboat/name/cn_name/keywords/category/website`。
+2. 目标清单字段校验必须通过：每条记录都包含上述 8 个字段，缺失则标记“待复核”并继续后续目标。
+3. 优先使用官网、航司新闻室、官方社媒、可信平台。
+4. 仅保留当前有效或有效期明确的优惠；无法确认时标记“需人工复核”。
+5. 必须写入 `workspace/skills/airline-promo-searcher/references/promo_tracking.md`，禁止创建 `workspace/skills/airline-promo-searcher/references/airline-promo-*.md`。
+6. 仅使用 `WebSearch`；每批次完成后必须输出 heartbeat 进度，避免空闲超时。
+7. 若 `WebSearch` 不可用，输出“本轮检索受限”并保留可验证来源。
+8. 结果展示优先级固定：先写文件模板，再回传 4 行摘要；不得输出自由发挥的长文本。
+9. 统一执行“先清空 + 分批追加”的单一路径，不使用续写模式分支。
 
 ## 参考资料
 

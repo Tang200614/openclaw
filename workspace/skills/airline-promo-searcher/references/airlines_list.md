@@ -12,8 +12,8 @@
 [
   {
     "id": 1,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "CEB",
     "cn_name": "宿雾航空",
     "keywords": [
@@ -26,8 +26,8 @@
   },
   {
     "id": 2,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "IGO",
     "cn_name": "靛蓝航空",
     "keywords": [
@@ -40,8 +40,8 @@
   },
   {
     "id": 3,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "AXM",
     "cn_name": "亚洲亚航",
     "keywords": [
@@ -54,8 +54,8 @@
   },
   {
     "id": 4,
-    "TYPE": "国际",
-    "CHEAPBOAT": "FSC",
+    "type": "国际",
+    "cheapboat": "FSC",
     "name": "EVA",
     "cn_name": "长荣航空",
     "keywords": [
@@ -82,8 +82,8 @@
   },
   {
     "id": 6,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "CPA",
     "cn_name": "国泰航空",
     "keywords": [
@@ -96,8 +96,8 @@
   },
   {
     "id": 7,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "UAE",
     "cn_name": "阿联酋航",
     "keywords": [
@@ -110,8 +110,8 @@
   },
   {
     "id": 8,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "FRE",
     "cn_name": "福莱尔航空",
     "keywords": [
@@ -124,8 +124,8 @@
   },
   {
     "id": 9,
-    "TYPE": "国际",
-    "CHEAPBOAT": "FSC",
+    "type": "国际",
+    "cheapboat": "FSC",
     "name": "JAL",
     "cn_name": "日本航空",
     "keywords": [
@@ -138,8 +138,8 @@
   },
   {
     "id": 10,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "KAL",
     "cn_name": "大韩航空",
     "keywords": [
@@ -152,8 +152,8 @@
   },
   {
     "id": 11,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "ANA",
     "cn_name": "全日空",
     "keywords": [
@@ -166,8 +166,8 @@
   },
   {
     "id": 12,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "NKS",
     "cn_name": "精神航空",
     "keywords": [
@@ -180,8 +180,8 @@
   },
   {
     "id": 13,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "QTR",
     "cn_name": "卡塔尔航空",
     "keywords": [
@@ -194,8 +194,8 @@
   },
   {
     "id": 14,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "TLM",
     "cn_name": "狮航",
     "keywords": [
@@ -208,8 +208,8 @@
   },
   {
     "id": 15,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "SIA",
     "cn_name": "新加坡航",
     "keywords": [
@@ -222,8 +222,8 @@
   },
   {
     "id": 16,
-    "TYPE": "国际",
-    "CHEAPBOAT": "FSC",
+    "type": "国际",
+    "cheapboat": "FSC",
     "name": "THY",
     "cn_name": "土耳其航",
     "keywords": [
@@ -236,8 +236,8 @@
   },
   {
     "id": 17,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "HKE",
     "cn_name": "香港快运航空公司",
     "keywords": [
@@ -250,8 +250,8 @@
   },
   {
     "id": 18,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "VJC",
     "cn_name": "越捷航空",
     "keywords": [
@@ -264,8 +264,8 @@
   },
   {
     "id": 19,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "HVN",
     "cn_name": "越南航空",
     "keywords": [
@@ -278,8 +278,8 @@
   },
   {
     "id": 20,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "WZZ",
     "cn_name": "维兹航空",
     "keywords": [
@@ -292,8 +292,8 @@
   },
   {
     "id": 21,
-    "TYPE": "国际",
-    "CHEAPBOAT": "LCC",
+    "type": "国际",
+    "cheapboat": "LCC",
     "name": "VOI",
     "cn_name": "墨西哥VOLARIS",
     "keywords": [
