@@ -25,8 +25,7 @@
           },
           "compat": {
             "supportsDeveloperRole": false
-          },
-          "api": "openai-completions"
+          }
         }
       ]
     },
@@ -217,8 +216,8 @@
       "api": "anthropic-messages",
       "models": [
         {
-          "id": "qwen3.5-plus",
-          "name": "qwen3.5-plus",
+          "id": "kimi-k2.5",
+          "name": "kimi-k2.5",
           "input": [
             "text"
           ],

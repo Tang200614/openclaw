@@ -212,24 +212,25 @@
     "cacheWrite": 0
   },
   "agent:main:main": {
-    "sessionId": "boot-2026-04-08_03-33-21-596-afd88a13",
+    "sessionId": "boot-2026-04-08_09-28-50-421-536e36e2",
     "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\4ca68464-8801-4bfa-9f5e-94fc37caa396.jsonl",
-    "updatedAt": 1775626793099,
+    "updatedAt": 1775721738723,
     "systemSent": true,
     "abortedLastRun": false,
     "chatType": "direct",
-    "model": "qwen3-coder-next",
+    "model": "kimi-k2.5",
     "modelProvider": "bailianforcoding",
     "origin": {
-      "provider": "webchat",
+      "provider": "heartbeat",
       "surface": "webchat",
       "chatType": "direct",
-      "label": "openclaw-tui",
+      "label": "heartbeat",
       "from": "heartbeat",
       "to": "heartbeat"
     },
     "deliveryContext": {
-      "channel": "webchat"
+      "channel": "webchat",
+      "to": "heartbeat"
     },
     "lastChannel": "webchat",
     "skillsSnapshot": {
@@ -423,17 +424,17 @@
       ],
       "version": 0
     },
-    "totalTokensFresh": false,
+    "totalTokensFresh": true,
     "status": "done",
-    "startedAt": 1775626737153,
-    "contextTokens": 262144,
+    "startedAt": 1775721733190,
+    "contextTokens": 200000,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1775626737137,
-      "sessionId": "boot-2026-04-08_03-33-21-596-afd88a13",
+      "generatedAt": 1775721733165,
+      "sessionId": "boot-2026-04-08_09-28-50-421-536e36e2",
       "sessionKey": "agent:main:main",
       "provider": "bailianforcoding",
-      "model": "qwen3-coder-next",
+      "model": "kimi-k2.5",
       "workspaceDir": "C:\\Users\\Administrator\\.openclaw\\workspace",
       "bootstrapMaxChars": 20000,
       "bootstrapTotalMaxChars": 150000,
@@ -449,9 +450,9 @@
         "sandboxed": false
       },
       "systemPrompt": {
-        "chars": 20010,
+        "chars": 18897,
         "projectContextChars": 3792,
-        "nonProjectContextChars": 16218
+        "nonProjectContextChars": 15105
       },
       "injectedWorkspaceFiles": [
         {
@@ -566,7 +567,7 @@
       },
       "tools": {
         "listChars": 0,
-        "schemaChars": 27830,
+        "schemaChars": 19302,
         "entries": [
           {
             "name": "read",
@@ -588,13 +589,13 @@
           },
           {
             "name": "exec",
-            "summaryChars": 792,
+            "summaryChars": 699,
             "schemaChars": 1098,
             "propertiesCount": 12
           },
           {
             "name": "process",
-            "summaryChars": 416,
+            "summaryChars": 322,
             "schemaChars": 961,
             "propertiesCount": 12
           },
@@ -605,22 +606,10 @@
             "propertiesCount": 18
           },
           {
-            "name": "nodes",
-            "summaryChars": 118,
-            "schemaChars": 1589,
-            "propertiesCount": 32
-          },
-          {
-            "name": "cron",
-            "summaryChars": 3726,
-            "schemaChars": 6700,
-            "propertiesCount": 13
-          },
-          {
             "name": "message",
             "summaryChars": 89,
-            "schemaChars": 5509,
-            "propertiesCount": 104
+            "schemaChars": 5613,
+            "propertiesCount": 105
           },
           {
             "name": "tts",
@@ -631,14 +620,8 @@
           {
             "name": "video_generate",
             "summaryChars": 225,
-            "schemaChars": 1644,
+            "schemaChars": 1650,
             "propertiesCount": 14
-          },
-          {
-            "name": "gateway",
-            "summaryChars": 464,
-            "schemaChars": 497,
-            "propertiesCount": 12
           },
           {
             "name": "agents_list",
@@ -673,8 +656,8 @@
           {
             "name": "sessions_spawn",
             "summaryChars": 302,
-            "schemaChars": 1179,
-            "propertiesCount": 17
+            "schemaChars": 1333,
+            "propertiesCount": 18
           },
           {
             "name": "subagents",
@@ -686,12 +669,6 @@
             "name": "session_status",
             "summaryChars": 336,
             "schemaChars": 89,
-            "propertiesCount": 2
-          },
-          {
-            "name": "web_search",
-            "summaryChars": 167,
-            "schemaChars": 248,
             "propertiesCount": 2
           },
           {
@@ -708,15 +685,15 @@
           },
           {
             "name": "memory_search",
-            "summaryChars": 334,
-            "schemaChars": 139,
-            "propertiesCount": 3
+            "summaryChars": 385,
+            "schemaChars": 260,
+            "propertiesCount": 4
           },
           {
             "name": "memory_get",
-            "summaryChars": 151,
-            "schemaChars": 128,
-            "propertiesCount": 3
+            "summaryChars": 207,
+            "schemaChars": 249,
+            "propertiesCount": 4
           },
           {
             "name": "tavily_search",
@@ -734,20 +711,24 @@
       }
     },
     "compactionCount": 1,
-    "inputTokens": 97436,
-    "outputTokens": 64,
-    "cacheRead": 0,
-    "cacheWrite": 0,
-    "endedAt": 1775626793046,
-    "runtimeMs": 55893
+    "inputTokens": 10,
+    "outputTokens": 36,
+    "cacheRead": 26693,
+    "cacheWrite": 202,
+    "totalTokens": 26900,
+    "lastTo": "heartbeat",
+    "channel": "webchat",
+    "estimatedCostUsd": 0,
+    "endedAt": 1775721738699,
+    "runtimeMs": 5509
   },
   "agent:main:subagent:d36d03dd-a458-49f6-ac2a-3252331b4a95": {
     "sessionId": "9af0a96c-7464-4c47-8f2e-2c82d70ea847",
-    "updatedAt": 1775607828887,
+    "updatedAt": 1775640339986,
     "spawnDepth": 1,
     "subagentRole": "leaf",
     "subagentControlScope": "none",
-    "model": "qwen3-coder-next",
+    "model": "kimi-k2.5",
     "modelProvider": "bailianforcoding",
     "spawnedBy": "agent:main:main",
     "spawnedWorkspaceDir": "C:\\Users\\Administrator\\.openclaw\\workspace",
@@ -950,17 +931,15 @@
     "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\9af0a96c-7464-4c47-8f2e-2c82d70ea847.jsonl",
     "status": "timeout",
     "startedAt": 1775607701104,
-    "abortedLastRun": true,
-    "endedAt": 1775607828849,
-    "runtimeMs": 127438,
-    "contextTokens": 262144,
+    "abortedLastRun": false,
+    "contextTokens": 200000,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1775607702079,
+      "generatedAt": 1775640246094,
       "sessionId": "9af0a96c-7464-4c47-8f2e-2c82d70ea847",
       "sessionKey": "agent:main:subagent:d36d03dd-a458-49f6-ac2a-3252331b4a95",
       "provider": "bailianforcoding",
-      "model": "qwen3-coder-next",
+      "model": "kimi-k2.5",
       "workspaceDir": "C:\\Users\\Administrator\\.openclaw\\workspace",
       "bootstrapMaxChars": 20000,
       "bootstrapTotalMaxChars": 150000,
@@ -976,9 +955,9 @@
         "sandboxed": false
       },
       "systemPrompt": {
-        "chars": 14348,
-        "projectContextChars": 5459,
-        "nonProjectContextChars": 8889
+        "chars": 12073,
+        "projectContextChars": 3182,
+        "nonProjectContextChars": 8891
       },
       "injectedWorkspaceFiles": [
         {
@@ -1069,7 +1048,7 @@
       },
       "tools": {
         "listChars": 0,
-        "schemaChars": 15405,
+        "schemaChars": 16997,
         "entries": [
           {
             "name": "read",
@@ -1110,8 +1089,8 @@
           {
             "name": "message",
             "summaryChars": 89,
-            "schemaChars": 5509,
-            "propertiesCount": 104
+            "schemaChars": 5601,
+            "propertiesCount": 105
           },
           {
             "name": "tts",
@@ -1122,7 +1101,7 @@
           {
             "name": "video_generate",
             "summaryChars": 225,
-            "schemaChars": 1644,
+            "schemaChars": 1650,
             "propertiesCount": 14
           },
           {
@@ -1130,12 +1109,6 @@
             "summaryChars": 97,
             "schemaChars": 60,
             "propertiesCount": 1
-          },
-          {
-            "name": "web_search",
-            "summaryChars": 93,
-            "schemaChars": 446,
-            "propertiesCount": 4
           },
           {
             "name": "web_fetch",
@@ -1151,35 +1124,122 @@
           },
           {
             "name": "memory_search",
-            "summaryChars": 334,
-            "schemaChars": 139,
-            "propertiesCount": 3
+            "summaryChars": 385,
+            "schemaChars": 260,
+            "propertiesCount": 4
           },
           {
             "name": "memory_get",
-            "summaryChars": 151,
-            "schemaChars": 128,
-            "propertiesCount": 3
+            "summaryChars": 207,
+            "schemaChars": 249,
+            "propertiesCount": 4
+          },
+          {
+            "name": "tavily_search",
+            "summaryChars": 133,
+            "schemaChars": 1033,
+            "propertiesCount": 8
+          },
+          {
+            "name": "tavily_extract",
+            "summaryChars": 117,
+            "schemaChars": 665,
+            "propertiesCount": 5
           }
         ]
       }
     },
-    "inputTokens": 28468,
-    "outputTokens": 108,
-    "totalTokens": 15307,
+    "inputTokens": 55,
+    "outputTokens": 5441,
+    "totalTokens": 29532,
     "totalTokensFresh": true,
-    "cacheRead": 0,
-    "cacheWrite": 0
+    "cacheRead": 258145,
+    "cacheWrite": 83996,
+    "endedAt": 1775607828849,
+    "runtimeMs": 127438,
+    "compactionCheckpoints": [
+      {
+        "checkpointId": "1e171d67-4545-4bfe-be2e-6fe474efe950",
+        "sessionKey": "agent:main:subagent:d36d03dd-a458-49f6-ac2a-3252331b4a95",
+        "sessionId": "9af0a96c-7464-4c47-8f2e-2c82d70ea847",
+        "createdAt": 1775640230797,
+        "reason": "overflow-retry",
+        "tokensBefore": 67203,
+        "tokensAfter": 11427,
+        "summary": "No prior history.\n\n---\n\n**Turn Context (split turn):**\n\n## Original Request\nThe user asked the AI to execute an airline promotion deep search task. The AI was to read 34 search targets from a file, visit their official websites in batches, extract current valid promotions, and write results to a tracking file.\n\n## Early Progress\n- Read skill definition and airlines list (34 targets: airlines + platforms)\n- Started executing in 7 batches of 4-5 targets each\n- Completed batches 1-5 (25/34 targets) using web search tool\n- Found promotions for: Thai Lion Air, Cebu Pacific, IndiGo, HK Express, VietJet Air, AirAsia, Emirates, Qatar Airways, Turkish Airlines, EVA Air, China Airlines, Vietnam Airlines, Singapore Airlines, Cathay Pacific, JAL, ANA, Korean Air, Flair Airlines, Wizz Air, Spirit Airlines, Volaris, Trip.com, Skyscanner, Google Flights, Kayak\n\n## Context for Suffix\n- Batch 5 just completed (target 21 + platforms 22-25)\n- Remaining: batches 6-7 (targets 26-34)\n- Need to continue serial batch execution, write results to promo_tracking.md, and return plain text summary\n\n<read-files>\n~/.openclaw/workspace/skills/airline-promo-searcher/SKILL.md\n~/.openclaw/workspace/skills/airline-promo-searcher/references/airlines_list.md\n</read-files>",
+        "firstKeptEntryId": "de68f366",
+        "preCompaction": {
+          "sessionId": "9af0a96c-7464-4c47-8f2e-2c82d70ea847",
+          "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\9af0a96c-7464-4c47-8f2e-2c82d70ea847.checkpoint.01aa494a-cc9f-4c31-86b2-8d18ce6f338e.jsonl",
+          "leafId": "de122433"
+        },
+        "postCompaction": {
+          "sessionId": "9af0a96c-7464-4c47-8f2e-2c82d70ea847",
+          "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\9af0a96c-7464-4c47-8f2e-2c82d70ea847.jsonl",
+          "leafId": "7de683ba",
+          "entryId": "7de683ba"
+        }
+      }
+    ],
+    "estimatedCostUsd": 0,
+    "compactionCount": 1
   },
   "agent:main:explicit:agent:main:main": {
-    "sessionId": "50878aab-bcb8-4813-8a6e-0f092a3f86e6",
-    "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\13f7ec4c-857b-45b4-889b-fdb68c7a3e20.jsonl",
-    "updatedAt": 1775628942749,
+    "sessionId": "2c67f481-d8ec-4469-ba6b-7862934b5516",
+    "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\2c67f481-d8ec-4469-ba6b-7862934b5516.jsonl",
+    "updatedAt": 1775720861709,
     "systemSent": true,
     "abortedLastRun": false,
     "chatType": "direct",
-    "model": "qwen3-coder-next",
+    "model": "kimi-k2.5",
     "modelProvider": "bailianforcoding",
+    "compactionCount": 1,
+    "compactionCheckpoints": [
+      {
+        "checkpointId": "172f28ff-1620-4f0d-aaaf-d1da272564c7",
+        "sessionKey": "agent:main:explicit:agent:main:main",
+        "sessionId": "83bc8d61-3279-4f07-97c5-f4e519c725f0",
+        "createdAt": 1775695214491,
+        "reason": "overflow-retry",
+        "tokensBefore": 81288,
+        "tokensAfter": 14459,
+        "summary": "No prior history.\n\n---\n\n**Turn Context (split turn):**\n\n## Original Request\nThe user asked the AI assistant to batch query airline and flight ticket promotion policies (批量查询航司和机票优惠政策).\n\n## Early Progress\n- The AI loaded the `airline-promo-searcher` skill and read the target list containing **34 targets** (21 airlines + 13 platforms)\n- Executed **4 batches** of searches using Tavily WebSearch, covering **20 targets total**\n- **Batch 1 (id 1-5)**: Thai Lion Air, Cebu Pacific, IndiGo, HK Express, VietJet Air\n- **Batch 2 (id 6-10)**: AirAsia, Emirates, Qatar Airways, Turkish Airlines, EVA Air\n- **Batch 3 (id 11-15)**: China Airlines, Vietnam Airlines, Singapore Airlines, Cathay Pacific, Japan Airlines\n- **Batch 4 (id 16-20)**: ANA, Korean Air, Flair Airlines, Wizz Air, Spirit Airlines\n- After each batch, the AI reported progress to avoid 60-second idle timeout\n\n## Context for Suffix\n- **Batch 5 is starting**: Covers id 21 (Volaris airline) + platforms id 22-26 (Trip.com/携程, Skyscanner, Google Flights, Kayak, Momondo)\n- The AI just completed searches for these 6 targets and is ready to continue with remaining platforms\n- Progress so far: **20/34 complete**, **14 targets remaining** (platforms id 27-34)\n\n<read-files>\n~/.openclaw\\workspace\\skills\\airline-promo-searcher\\SKILL.md\n~/.openclaw\\workspace\\skills\\airline-promo-searcher\\references\\airlines_list.md\n</read-files>",
+        "firstKeptEntryId": "093ba1b6",
+        "preCompaction": {
+          "sessionId": "83bc8d61-3279-4f07-97c5-f4e519c725f0",
+          "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\83bc8d61-3279-4f07-97c5-f4e519c725f0.checkpoint.cbaf3197-a3c0-45d0-8b4a-4a113b88e5ca.jsonl",
+          "leafId": "0f6c0d23"
+        },
+        "postCompaction": {
+          "sessionId": "83bc8d61-3279-4f07-97c5-f4e519c725f0",
+          "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\83bc8d61-3279-4f07-97c5-f4e519c725f0.jsonl",
+          "leafId": "f71012f2",
+          "entryId": "f71012f2"
+        }
+      },
+      {
+        "checkpointId": "e732561d-07e3-4a3b-958d-bd64a5694ee5",
+        "sessionKey": "agent:main:explicit:agent:main:main",
+        "sessionId": "deb793ac-1651-46b2-b120-313822fc8f42",
+        "createdAt": 1775697072485,
+        "reason": "overflow-retry",
+        "tokensBefore": 101784,
+        "tokensAfter": 19871,
+        "summary": "## Goal\n- Start a new session and receive task assignment from user\n\n## Constraints & Preferences\n- Persona: 贾维斯 (Jarvis) - Chief Systems Architect / Senior Full-Stack Engineer\n- Communication style:极度理性 (highly rational), 惜字如金 (concise), 结果导向 (result-oriented), 简体中文 with English code\n- No tolerance for workflow violations (especially missing documentation)\n- Direct error handling: root cause + fix plan, no apologies\n\n## Progress\n### Done\n- [x] Session startup sequence completed\n- [x] Identity loaded from `C:\\Users\\Administrator\\.openclaw\\workspace\\IDENTITY.md`\n- [x] Persona loaded from `C:\\Users\\Administrator\\.openclaw\\workspace\\SOUL.md`\n- [x] Memory loaded from `C:\\Users\\Administrator\\.openclaw\\workspace\\MEMORY.md`\n- [x] System initialized with persona greeting delivered\n\n### In Progress\n- [ ] Awaiting user task assignment\n\n### Blocked\n- (none)\n\n## Key Decisions\n- **Language**: Simplified Chinese for communication, English for code\n- **Tone**: Direct technical peer-to-peer, no pleasantries\n\n## Next Steps\n1. Receive task from user\n2. If Feature-level task: review MEMORY.md for environment constraints\n3. Execute with verify + document workflow\n4. End with mandatory documentation汇报\n\n## Critical Context\n- **Environment**: Windows (`C:\\Users\\Administrator\\.openclaw\\workspace\\`)\n- **MCP Server**: `chrome-devtools` configured at `C:\\Users\\Administrator\\.openclaw\\openclaw.json`, CDP port 18800, verified operational (as of 2026-04-02)\n- **No active technical legacy/blockers** from previous sessions\n- **Current time**: 2026-04-09 09:01 CST / 01:01 UTC\n\n---\n\n**Turn Context (split turn):**\n\n## Original Request\nUser requested to query airline promotional policies (查询各航司优惠政策) on 2026-04-09.\n\n## Early Progress\n- Skill `airline-promo-searcher` was activated with WebSearch-based retrieval rules\n- Read target list of 34 airlines/platforms from `airlines_list.md`\n- Started first batch search (4 targets): Thai Lion Air, Cebu Pacific, IndiGo, HK Express\n- Successfully wrote batch 1 results to `promo_tracking.md` with structured promo tables\n- Proceeded to batch 2: VietJet Air, AirAsia, Emirates, Qatar Airways — results retrieved and written\n- Current progress: 8/34 targets completed, starting batch 3\n\n## Context for Suffix\n- Batch 3 in progress: Turkish Airlines, EVA Air, China Airlines, Vietnam Airlines searches just completed\n- Need to extract and append batch 3 results to `promo_tracking.md` following same table format\n- Remaining targets: 26 more airlines/platforms to process in subsequent batches\n- Key constraint: Must output heartbeat progress after each batch to avoid 60s idle timeout\n\n<read-files>\nC:\\Users\\Administrator\\.openclaw\\workspace\\IDENTITY.md\nC:\\Users\\Administrator\\.openclaw\\workspace\\MEMORY.md\nC:\\Users\\Administrator\\.openclaw\\workspace\\SOUL.md\nC:\\Users\\Administrator\\.openclaw\\workspace\\skills\\airline-promo-searcher\\references\\airlines_list.md\n~/.openclaw\\workspace\\skills\\airline-promo-searcher\\SKILL.md\n</read-files>\n\n<modified-files>\nC:\\Users\\Administrator\\.openclaw\\workspace\\skills\\airline-promo-searcher\\references\\promo_tracking.md\n</modified-files>",
+        "firstKeptEntryId": "4f753e59",
+        "preCompaction": {
+          "sessionId": "2c67f481-d8ec-4469-ba6b-7862934b5516",
+          "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\deb793ac-1651-46b2-b120-313822fc8f42.checkpoint.a5837679-2e58-4b1a-93e1-61125a9aab46.jsonl",
+          "leafId": "e16bad39"
+        },
+        "postCompaction": {
+          "sessionId": "deb793ac-1651-46b2-b120-313822fc8f42",
+          "sessionFile": "C:\\Users\\Administrator\\.openclaw\\agents\\main\\sessions\\deb793ac-1651-46b2-b120-313822fc8f42.jsonl",
+          "leafId": "f74600ad",
+          "entryId": "f74600ad"
+        }
+      }
+    ],
     "origin": {
       "provider": "webchat",
       "surface": "webchat",
@@ -1190,8 +1250,12 @@
     },
     "lastChannel": "webchat",
     "skillsSnapshot": {
-      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>coding-agent</name>\n    <description>Delegate coding tasks to Codex, Claude Code, or Pi agents via background process. Use when: (1) building/creating new features or apps, (2) reviewing PRs (spawn in temp dir), (3) refactoring large codebases, (4) iterative coding that needs file exploration. NOT for: simple one-liner fixes (just edit), reading code (use read tool), thread-bound ACP harness requests in chat (for example spawn/run Codex or Claude Code in a Discord thread; use sessions_spawn with runtime:&quot;acp&quot;), or any work in ~/clawd workspace (never spawn agents here). Claude Code: use --print --permission-mode bypassPermissions (no PTY). Codex/Pi/OpenCode: pty:true required.</description>\n    <location>~/AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\coding-agent\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\healthcheck\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>node-connect</name>\n    <description>Diagnose OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps. Use when QR/setup code/manual connect fails, local Wi-Fi works but VPS/tailnet does not, or errors mention pairing required, unauthorized, bootstrap token invalid or expired, gateway.bind, gateway.remote.url, Tailscale, or plugins.entries.device-pair.config.publicUrl.</description>\n    <location>~/AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\node-connect\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create, edit, improve, or audit AgentSkills. Use when creating a new skill from scratch or when asked to improve, review, audit, tidy up, or clean up an existing skill or SKILL.md file. Also use when editing or restructuring a skill directory (moving files to references/ or scripts/, removing stale content, validating against the AgentSkills spec). Triggers on phrases like &quot;create a skill&quot;, &quot;author a skill&quot;, &quot;tidy up a skill&quot;, &quot;improve this skill&quot;, &quot;review the skill&quot;, &quot;clean up the skill&quot;, &quot;audit the skill&quot;.</description>\n    <location>~/AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\skill-creator\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\weather\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>airline-promo-searcher</name>\n    <description>并行搜索 21 家航司和 13 个订票平台的最新优惠政策，分批次批量执行，每个批次 3-4 个目标同时检索</description>\n    <location>~/.openclaw\\workspace\\skills\\airline-promo-searcher\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>image-generate</name>\n    <description>使用内置 image_generate.py 脚本生成图片, 准备清晰具体的 `prompt`。</description>\n    <location>~/.openclaw\\workspace\\skills\\image-generate\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>VeADK-Go 技能集合</name>\n    <description>根据用户的功能需求，完成与 VeADK-Go 相关的功能; 包括：直接根据需求生成 Agent；将Enio Agent转换为VeADK-Go Agent。</description>\n    <location>~/.openclaw\\workspace\\skills\\veadk-go-skills\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>VeADK 技能集合</name>\n    <description>根据用户的功能需求，完成与 VeADK 相关的功能。</description>\n    <location>~/.openclaw\\workspace\\skills\\veadk-skills\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>video-generate</name>\n    <description>使用 video_generate.py 脚本生成视频，需要提供文件名和 prompt，可选提供首帧图片（URL或本地路径）。</description>\n    <location>~/.openclaw\\workspace\\skills\\video-generate\\SKILL.md</location>\n  </skill>\n</available_skills>",
+      "prompt": "\n\nThe following skills provide specialized instructions for specific tasks.\nUse the read tool to load a skill's file when the task matches its description.\nWhen a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.\n\n<available_skills>\n  <skill>\n    <name>tavily</name>\n    <description>Tavily web search, content extraction, and research tools.</description>\n    <location>~/AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\dist\\extensions\\tavily\\skills\\tavily\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>coding-agent</name>\n    <description>Delegate coding tasks to Codex, Claude Code, or Pi agents via background process. Use when: (1) building/creating new features or apps, (2) reviewing PRs (spawn in temp dir), (3) refactoring large codebases, (4) iterative coding that needs file exploration. NOT for: simple one-liner fixes (just edit), reading code (use read tool), thread-bound ACP harness requests in chat (for example spawn/run Codex or Claude Code in a Discord thread; use sessions_spawn with runtime:&quot;acp&quot;), or any work in ~/clawd workspace (never spawn agents here). Claude Code: use --print --permission-mode bypassPermissions (no PTY). Codex/Pi/OpenCode: pty:true required.</description>\n    <location>~/AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\coding-agent\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>healthcheck</name>\n    <description>Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).</description>\n    <location>~/AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\healthcheck\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>node-connect</name>\n    <description>Diagnose OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps. Use when QR/setup code/manual connect fails, local Wi-Fi works but VPS/tailnet does not, or errors mention pairing required, unauthorized, bootstrap token invalid or expired, gateway.bind, gateway.remote.url, Tailscale, or plugins.entries.device-pair.config.publicUrl.</description>\n    <location>~/AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\node-connect\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>skill-creator</name>\n    <description>Create, edit, improve, or audit AgentSkills. Use when creating a new skill from scratch or when asked to improve, review, audit, tidy up, or clean up an existing skill or SKILL.md file. Also use when editing or restructuring a skill directory (moving files to references/ or scripts/, removing stale content, validating against the AgentSkills spec). Triggers on phrases like &quot;create a skill&quot;, &quot;author a skill&quot;, &quot;tidy up a skill&quot;, &quot;improve this skill&quot;, &quot;review the skill&quot;, &quot;clean up the skill&quot;, &quot;audit the skill&quot;.</description>\n    <location>~/AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\skill-creator\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>weather</name>\n    <description>Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.</description>\n    <location>~/AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\weather\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>airline-promo-searcher</name>\n    <description>批量查询航司和机票优惠政策</description>\n    <location>~/.openclaw\\workspace\\skills\\airline-promo-searcher\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>image-generate</name>\n    <description>使用内置 image_generate.py 脚本生成图片, 准备清晰具体的 `prompt`。</description>\n    <location>~/.openclaw\\workspace\\skills\\image-generate\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>VeADK-Go 技能集合</name>\n    <description>根据用户的功能需求，完成与 VeADK-Go 相关的功能; 包括：直接根据需求生成 Agent；将Enio Agent转换为VeADK-Go Agent。</description>\n    <location>~/.openclaw\\workspace\\skills\\veadk-go-skills\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>VeADK 技能集合</name>\n    <description>根据用户的功能需求，完成与 VeADK 相关的功能。</description>\n    <location>~/.openclaw\\workspace\\skills\\veadk-skills\\SKILL.md</location>\n  </skill>\n  <skill>\n    <name>video-generate</name>\n    <description>使用 video_generate.py 脚本生成视频，需要提供文件名和 prompt，可选提供首帧图片（URL或本地路径）。</description>\n    <location>~/.openclaw\\workspace\\skills\\video-generate\\SKILL.md</location>\n  </skill>\n</available_skills>",
       "skills": [
+        {
+          "name": "tavily",
+          "requiredEnv": []
+        },
         {
           "name": "coding-agent",
           "requiredEnv": []
@@ -1228,83 +1292,98 @@
       ],
       "resolvedSkills": [
         {
+          "name": "tavily",
+          "description": "Tavily web search, content extraction, and research tools.",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\dist\\extensions\\tavily\\skills\\tavily\\SKILL.md",
+          "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\dist\\extensions\\tavily\\skills\\tavily",
+          "source": "openclaw-extra",
+          "sourceInfo": {
+            "path": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\dist\\extensions\\tavily\\skills\\tavily\\SKILL.md",
+            "source": "openclaw-extra",
+            "scope": "project",
+            "origin": "top-level",
+            "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\dist\\extensions\\tavily\\skills\\tavily"
+          },
+          "disableModelInvocation": false
+        },
+        {
           "name": "coding-agent",
           "description": "Delegate coding tasks to Codex, Claude Code, or Pi agents via background process. Use when: (1) building/creating new features or apps, (2) reviewing PRs (spawn in temp dir), (3) refactoring large codebases, (4) iterative coding that needs file exploration. NOT for: simple one-liner fixes (just edit), reading code (use read tool), thread-bound ACP harness requests in chat (for example spawn/run Codex or Claude Code in a Discord thread; use sessions_spawn with runtime:\"acp\"), or any work in ~/clawd workspace (never spawn agents here). Claude Code: use --print --permission-mode bypassPermissions (no PTY). Codex/Pi/OpenCode: pty:true required.",
-          "filePath": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\coding-agent\\SKILL.md",
-          "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\coding-agent",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\coding-agent\\SKILL.md",
+          "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\coding-agent",
           "source": "openclaw-bundled",
           "sourceInfo": {
-            "path": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\coding-agent\\SKILL.md",
+            "path": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\coding-agent\\SKILL.md",
             "source": "openclaw-bundled",
             "scope": "project",
             "origin": "top-level",
-            "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\coding-agent"
+            "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\coding-agent"
           },
           "disableModelInvocation": false
         },
         {
           "name": "healthcheck",
           "description": "Host security hardening and risk-tolerance configuration for OpenClaw deployments. Use when a user asks for security audits, firewall/SSH/update hardening, risk posture, exposure review, OpenClaw cron scheduling for periodic checks, or version status checks on a machine running OpenClaw (laptop, workstation, Pi, VPS).",
-          "filePath": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\healthcheck\\SKILL.md",
-          "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\healthcheck",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\healthcheck\\SKILL.md",
+          "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\healthcheck",
           "source": "openclaw-bundled",
           "sourceInfo": {
-            "path": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\healthcheck\\SKILL.md",
+            "path": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\healthcheck\\SKILL.md",
             "source": "openclaw-bundled",
             "scope": "project",
             "origin": "top-level",
-            "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\healthcheck"
+            "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\healthcheck"
           },
           "disableModelInvocation": false
         },
         {
           "name": "node-connect",
           "description": "Diagnose OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps. Use when QR/setup code/manual connect fails, local Wi-Fi works but VPS/tailnet does not, or errors mention pairing required, unauthorized, bootstrap token invalid or expired, gateway.bind, gateway.remote.url, Tailscale, or plugins.entries.device-pair.config.publicUrl.",
-          "filePath": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\node-connect\\SKILL.md",
-          "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\node-connect",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\node-connect\\SKILL.md",
+          "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\node-connect",
           "source": "openclaw-bundled",
           "sourceInfo": {
-            "path": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\node-connect\\SKILL.md",
+            "path": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\node-connect\\SKILL.md",
             "source": "openclaw-bundled",
             "scope": "project",
             "origin": "top-level",
-            "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\node-connect"
+            "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\node-connect"
           },
           "disableModelInvocation": false
         },
         {
           "name": "skill-creator",
           "description": "Create, edit, improve, or audit AgentSkills. Use when creating a new skill from scratch or when asked to improve, review, audit, tidy up, or clean up an existing skill or SKILL.md file. Also use when editing or restructuring a skill directory (moving files to references/ or scripts/, removing stale content, validating against the AgentSkills spec). Triggers on phrases like \"create a skill\", \"author a skill\", \"tidy up a skill\", \"improve this skill\", \"review the skill\", \"clean up the skill\", \"audit the skill\".",
-          "filePath": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\skill-creator\\SKILL.md",
-          "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\skill-creator",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\skill-creator\\SKILL.md",
+          "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\skill-creator",
           "source": "openclaw-bundled",
           "sourceInfo": {
-            "path": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\skill-creator\\SKILL.md",
+            "path": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\skill-creator\\SKILL.md",
             "source": "openclaw-bundled",
             "scope": "project",
             "origin": "top-level",
-            "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\skill-creator"
+            "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\skill-creator"
           },
           "disableModelInvocation": false
         },
         {
           "name": "weather",
           "description": "Get current weather and forecasts via wttr.in or Open-Meteo. Use when: user asks about weather, temperature, or forecasts for any location. NOT for: historical weather data, severe weather alerts, or detailed meteorological analysis. No API key needed.",
-          "filePath": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\weather\\SKILL.md",
-          "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\weather",
+          "filePath": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\weather\\SKILL.md",
+          "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\weather",
           "source": "openclaw-bundled",
           "sourceInfo": {
-            "path": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\weather\\SKILL.md",
+            "path": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\weather\\SKILL.md",
             "source": "openclaw-bundled",
             "scope": "project",
             "origin": "top-level",
-            "baseDir": "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\openclaw\\skills\\weather"
+            "baseDir": "C:\\Users\\Administrator\\AppData\\Local\\Programs\\nodejs\\node_modules\\openclaw\\skills\\weather"
           },
           "disableModelInvocation": false
         },
         {
           "name": "airline-promo-searcher",
-          "description": "并行搜索 21 家航司和 13 个订票平台的最新优惠政策，分批次批量执行，每个批次 3-4 个目标同时检索",
+          "description": "批量查询航司和机票优惠政策",
           "filePath": "C:\\Users\\Administrator\\.openclaw\\workspace\\skills\\airline-promo-searcher\\SKILL.md",
           "baseDir": "C:\\Users\\Administrator\\.openclaw\\workspace\\skills\\airline-promo-searcher",
           "source": "openclaw-workspace",
@@ -1380,20 +1459,17 @@
       ],
       "version": 0
     },
-    "inputTokens": 1817929,
-    "outputTokens": 5346,
-    "totalTokens": 47279,
     "totalTokensFresh": true,
-    "status": "running",
-    "startedAt": 1775628942736,
-    "contextTokens": 262144,
+    "status": "done",
+    "startedAt": 1775720220719,
+    "contextTokens": 200000,
     "systemPromptReport": {
       "source": "run",
-      "generatedAt": 1775628638904,
-      "sessionId": "50878aab-bcb8-4813-8a6e-0f092a3f86e6",
+      "generatedAt": 1775720220703,
+      "sessionId": "2c67f481-d8ec-4469-ba6b-7862934b5516",
       "sessionKey": "agent:main:explicit:agent:main:main",
       "provider": "bailianforcoding",
-      "model": "qwen3-coder-next",
+      "model": "kimi-k2.5",
       "workspaceDir": "C:\\Users\\Administrator\\.openclaw\\workspace",
       "bootstrapMaxChars": 20000,
       "bootstrapTotalMaxChars": 150000,
@@ -1409,9 +1485,9 @@
         "sandboxed": false
       },
       "systemPrompt": {
-        "chars": 20022,
+        "chars": 20295,
         "projectContextChars": 3792,
-        "nonProjectContextChars": 16230
+        "nonProjectContextChars": 16503
       },
       "injectedWorkspaceFiles": [
         {
@@ -1480,31 +1556,35 @@
         }
       ],
       "skills": {
-        "promptChars": 4532,
+        "promptChars": 4802,
         "entries": [
           {
+            "name": "tavily",
+            "blockChars": 257
+          },
+          {
             "name": "coding-agent",
-            "blockChars": 836
+            "blockChars": 846
           },
           {
             "name": "healthcheck",
-            "blockChars": 495
+            "blockChars": 505
           },
           {
             "name": "node-connect",
-            "blockChars": 545
+            "blockChars": 555
           },
           {
             "name": "skill-creator",
-            "blockChars": 763
+            "blockChars": 773
           },
           {
             "name": "weather",
-            "blockChars": 420
+            "blockChars": 430
           },
           {
             "name": "airline-promo-searcher",
-            "blockChars": 229
+            "blockChars": 189
           },
           {
             "name": "image-generate",
@@ -1526,7 +1606,7 @@
       },
       "tools": {
         "listChars": 0,
-        "schemaChars": 22005,
+        "schemaChars": 28076,
         "entries": [
           {
             "name": "read",
@@ -1579,8 +1659,8 @@
           {
             "name": "message",
             "summaryChars": 89,
-            "schemaChars": 5509,
-            "propertiesCount": 104
+            "schemaChars": 5601,
+            "propertiesCount": 105
           },
           {
             "name": "tts",
@@ -1589,8 +1669,14 @@
             "propertiesCount": 2
           },
           {
+            "name": "video_generate",
+            "summaryChars": 225,
+            "schemaChars": 1650,
+            "propertiesCount": 14
+          },
+          {
             "name": "gateway",
-            "summaryChars": 464,
+            "summaryChars": 494,
             "schemaChars": 497,
             "propertiesCount": 12
           },
@@ -1627,8 +1713,8 @@
           {
             "name": "sessions_spawn",
             "summaryChars": 302,
-            "schemaChars": 1179,
-            "propertiesCount": 17
+            "schemaChars": 1333,
+            "propertiesCount": 18
           },
           {
             "name": "subagents",
@@ -1643,33 +1729,51 @@
             "propertiesCount": 2
           },
           {
-            "name": "web_search",
-            "summaryChars": 109,
-            "schemaChars": 564,
-            "propertiesCount": 7
-          },
-          {
             "name": "web_fetch",
             "summaryChars": 129,
             "schemaChars": 374,
             "propertiesCount": 3
           },
           {
+            "name": "browser",
+            "summaryChars": 1066,
+            "schemaChars": 2799,
+            "propertiesCount": 48
+          },
+          {
             "name": "memory_search",
-            "summaryChars": 334,
-            "schemaChars": 139,
-            "propertiesCount": 3
+            "summaryChars": 385,
+            "schemaChars": 260,
+            "propertiesCount": 4
           },
           {
             "name": "memory_get",
-            "summaryChars": 151,
-            "schemaChars": 128,
-            "propertiesCount": 3
+            "summaryChars": 207,
+            "schemaChars": 249,
+            "propertiesCount": 4
+          },
+          {
+            "name": "tavily_search",
+            "summaryChars": 133,
+            "schemaChars": 1033,
+            "propertiesCount": 8
+          },
+          {
+            "name": "tavily_extract",
+            "summaryChars": 117,
+            "schemaChars": 665,
+            "propertiesCount": 5
           }
         ]
       }
     },
-    "cacheRead": 0,
-    "cacheWrite": 0
+    "estimatedCostUsd": 0,
+    "totalTokens": 119994,
+    "inputTokens": 45,
+    "outputTokens": 16866,
+    "cacheRead": 114763,
+    "cacheWrite": 5226,
+    "endedAt": 1775720861687,
+    "runtimeMs": 640968
   }
 }

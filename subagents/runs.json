@@ -1,8 +1,8 @@
 {
   "version": 2,
   "runs": {
-    "91109bb9-72f4-4101-b7d6-9c12797127ce": {
-      "runId": "91109bb9-72f4-4101-b7d6-9c12797127ce",
+    "9254e839-23da-4914-ba09-6369bc0657c7": {
+      "runId": "9254e839-23da-4914-ba09-6369bc0657c7",
       "childSessionKey": "agent:main:subagent:d36d03dd-a458-49f6-ac2a-3252331b4a95",
       "controllerSessionKey": "agent:main:main",
       "requesterSessionKey": "agent:main:main",
@@ -17,21 +17,21 @@
       "model": "bailianforcoding/qwen3-coder-next",
       "workspaceDir": "C:\\Users\\Administrator\\.openclaw\\workspace",
       "runTimeoutSeconds": 0,
-      "createdAt": 1775607701104,
-      "startedAt": 1775607701411,
+      "createdAt": 1775640007259,
+      "startedAt": 1775640246115,
       "sessionStartedAt": 1775607701104,
-      "accumulatedRuntimeMs": 0,
+      "accumulatedRuntimeMs": 127438,
       "cleanupHandled": true,
       "retainAttachmentsOnKeep": false,
-      "endedAt": 1775607828849,
+      "endedAt": 1775640339970,
       "outcome": {
-        "status": "timeout"
+        "status": "ok"
       },
       "endedReason": "subagent-complete",
-      "frozenResultText": "[DUMMY_TOOL_RESULT]",
-      "frozenResultCapturedAt": 1775607828905,
-      "endedHookEmittedAt": 1775607841149,
-      "cleanupCompletedAt": 1775607841150
+      "frozenResultText": "**批次6完成 (30/34)**。发现有效优惠：\n- Momondo: 比价平台, 不提供优惠码, 度假套餐优惠\n- 亿行: 黑五优惠酒店低至26折, APP预订酒店最高20%折扣, 会员专属优惠\n- Traveloka: Flash Sale每周二至周四机票最高SGD 40折扣, EPIC SALE 4-5月, 日本酒店RM 50折扣\n- 安可达: 酒店预订最高60%折扣, 首次APP预订12%折扣, 连住3晚最高20%折扣\n- 缤客: Genius会员最高50%折扣, 新用户10%折扣, 冬季优惠15%\n\n**批次7/7: 目标 31-34 (Airpaz、去哪儿网、飞猪、同程旅行)**",
+      "frozenResultCapturedAt": 1775640230856,
+      "endedHookEmittedAt": 1775640254658,
+      "cleanupCompletedAt": 1775640254660
     }
   }
 }

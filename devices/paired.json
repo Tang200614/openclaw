@@ -45,8 +45,8 @@
     "deviceId": "70aafaf5b186e912cd7a5f4c3de4ac3e7a8e5f3a0bfe549d03e0abfa0bb729ae",
     "publicKey": "hib3RmoT_G2lbwxKkHo0cIgO7c0u67oiBn5wIKY25Ms",
     "platform": "win32",
-    "clientId": "openclaw-tui",
-    "clientMode": "ui",
+    "clientId": "cli",
+    "clientMode": "cli",
     "role": "operator",
     "roles": [
       "operator"
@@ -82,8 +82,7 @@
       }
     },
     "createdAtMs": 1774959188825,
-    "approvedAtMs": 1775181337079,
-    "displayName": "openclaw-tui"
+    "approvedAtMs": 1775181337079
   },
   "b40a12ec48acab404557d4b6a1f55a0f0b23aa92cc5ec1b2b9ca97655797c444": {
     "deviceId": "b40a12ec48acab404557d4b6a1f55a0f0b23aa92cc5ec1b2b9ca97655797c444",
@@ -163,7 +162,7 @@
           "operator.write"
         ],
         "createdAtMs": 1775183809690,
-        "lastUsedAtMs": 1775628403128
+        "lastUsedAtMs": 1775720215385
       }
     },
     "createdAtMs": 1775183809690,

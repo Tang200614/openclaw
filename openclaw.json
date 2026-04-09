@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.4.5",
-    "lastTouchedAt": "2026-04-08T03:22:15.164Z"
+    "lastTouchedAt": "2026-04-08T08:07:31.161Z"
   },
   "models": {
     "mode": "merge",
@@ -12,8 +12,8 @@
         "api": "anthropic-messages",
         "models": [
           {
-            "id": "qwen3.5-plus",
-            "name": "qwen3.5-plus",
+            "id": "kimi-k2.5",
+            "name": "kimi-k2.5",
             "input": [
               "text"
             ],
@@ -35,7 +35,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "bailianforcoding/qwen3-coder-next"
+        "primary": "bailianforcoding/kimi-k2.5"
       },
       "maxConcurrent": 4,
       "subagents": {
@@ -46,9 +46,7 @@
   "tools": {
     "web": {
       "search": {
-        "enabled": true,
-        "provider": "kimi",
-        "maxResults": 5
+        "enabled": false
       }
     }
   },
@@ -67,7 +65,19 @@
   },
   "mcp": {},
   "plugins": {
-    "allow": ["dingtalk-connector"]
+    "entries": {
+      "tavily": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "apiKey": "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"
+          }
+        }
+      },
+      "qwen": {
+        "enabled": true
+      }
+    }
   },
   "messages": {
     "ackReactionScope": "group-mentions"
