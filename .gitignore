@@ -27,9 +27,10 @@ Thumbs.db
 *.temp
 *.reset.*
 
-# Sessions (optional - uncomment if you don't want to track sessions)
-# agents/main/sessions/*
-# identity/device-auth.json
+# Sessions/Auth local state
+agents/main/sessions/sessions.json
+identity/device-auth.json
+devices/paired.json
 
 # Runtime session artifacts
 agents/main/sessions/*.jsonl
