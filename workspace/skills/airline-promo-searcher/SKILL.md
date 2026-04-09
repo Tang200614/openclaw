@@ -15,12 +15,12 @@ metadata:
 
 ## 执行总则
 
-1. 仅使用 `WebSearch` 执行检索。
-2. 从 `references/airlines_list.md` 读取目标清单，**按批次串行执行**（避免 LLM 空闲超时）。
-3. 默认覆盖写入 `references/promo_tracking.md`。
-4. 用户明确要求"补充/续写/追加"时才使用续写模式。
+1. 仅使用 `WebSearch` 执行检索；目标清单同步阶段允许直接请求航司接口。
+2. 先请求 `http://192.168.1.173:7001/servlet/ServiceServlet?method=getAirCompanyList&type=1` 同步航司基准；接口数据结构按 `TYPE/CHEAPBOAT/CODE/AIRCODE/SHORTNAME/BELONG/URL` 解析，再从 `workspace/skills/airline-promo-searcher/references/airlines_list.md` 读取目标清单并**按批次串行执行**（避免 LLM 空闲超时）。
+3. 写入 `workspace/skills/airline-promo-searcher/references/promo_tracking.md` 时，任务开始先清空旧内容。
+4. **每完成一批次就立即追加写入一次**，不得等全部目标完成后再统一写入。
 5. 每完成一批次立即输出进度，避免触发 60 秒空闲超时。
-6. 最终只返回纯文本摘要。
+6. 最终回复必须是固定模板的纯文本，不输出航司/平台长列表。
 
 ## 触发规则
 
@@ -32,118 +32,102 @@ metadata:
 
 ## 核心职责
 
-1. 基于统一目标列表执行目标的优惠检索。
+1. 基于“接口同步后的统一目标列表”执行优惠检索。
 2. 每个目标默认执行 1-2 次检索，命中不足时再扩展到 3-4 次。
 3. 仅保留当前有效或有效期明确的优惠信息。
-4. 输出到单一追踪文件 `references/promo_tracking.md`。
+4. 输出到单一追踪文件 `workspace/skills/airline-promo-searcher/references/promo_tracking.md`。
 5. 不创建按日期命名的新报告文件。
 
 ## 输出要求
 
 1. 文档中必须包含汇总信息（目标总数、更新日期、搜索工具、写入策略）。
-2. 文档中必须包含目标的状态或结果。
-3. 状态总表字段固定为：`编号 | 名称 | 类型 | 官网 | 状态`。
-4. 每个目标详情必须使用以下固定模板：
+2. 文档中必须包含 `## 目标详情` 段，并覆盖本轮应检索的全部目标。
+3. 每个目标详情必须使用以下固定模板：
    `## 记录模板`
    `### 目标名称（中文名 / 英文名）`
    `| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |`
    `|----------|----------|--------|----------|`
    `| 示例 | 示例 | 示例 | 示例 |`
-5. 来源链接必须可追溯，无法确认时标记为"需人工复核"。
-6. 发送给用户时返回纯文本摘要，不输出 Markdown 标记。
+4. 来源链接必须可追溯，无法确认时标记为"需人工复核"。
+5. 不允许把详情改写成“按编号罗列一句话”的清单式输出。
+6. 发送给用户时返回固定模板纯文本，不输出 Markdown 标记。
 
 ## 工作流程
 
-### 步骤 1：读取目标列表
+### 步骤 1：同步并读取目标列表
 
-从 `references/airlines_list.md` 读取以下字段：
+1. 先请求 `http://192.168.1.173:7001/servlet/ServiceServlet?method=getAirCompanyList&type=1` 获取航司列表。
+2. 以接口返回为航司基准，更新 `workspace/skills/airline-promo-searcher/references/airlines_list.md` 后再读取字段。
+3. 若接口不可用，保留现有 `workspace/skills/airline-promo-searcher/references/airlines_list.md` 继续执行，并在结果中标记“航司基准未刷新”。
+4. 接口原始字段按以下结构识别：
+- TYPE
+- CHEAPBOAT
+- CODE
+- AIRCODE
+- SHORTNAME
+- BELONG
+- URL
+5. 保存后的目标字段必须与接口结构一致，不得丢字段或重命名：
 - id
-- name
-- cn_name
-- keywords
-- category
-- website
+- TYPE
+- CHEAPBOAT
+- CODE
+- AIRCODE
+- SHORTNAME
+- BELONG
+- URL
 
 ### 步骤 2：构造 WebSearch 查询
 
-1. 以目标 `name`、`cn_name`、`keywords` 动态拼接查询词。
-2. 每个目标先执行 1 条高置信查询，再按需扩展到 2-4 条。
+1. 以目标 `SHORTNAME`、`AIRCODE/CODE`、`URL`、`BELONG`、`CHEAPBOAT` 动态拼接查询词。
+2. 单目标默认查询 1-2 次，最多不超过 4 次。
 3. 查询优先级：官网域名词 > 优惠词 > 年份词。
-4. 示例组合：`品牌名 + promo/deal`、`中文名 + 促销/特价`、`品牌名 + 官方活动`。
+4. 推荐组合：`SHORTNAME + promo/deal`、`AIRCODE + promotion`、`SHORTNAME + 促销/特价`、`SHORTNAME + BELONG + deal`、`官网域名 + offers`。
 
 ### 步骤 3：执行搜索与提取（关键：避免超时）
 
-**重要：采用串行批次执行，避免 LLM 空闲超时**
+1. 采用串行批次执行，不并行启动子代理。
+2. 每批处理 4-5 个目标，按目标总数动态分批。
+3. 每批内逐个目标检索并提取：优惠类型、优惠内容、有效期、来源链接。
+4. 同域名相似结果去重，仅保留可验证来源。
+5. 单目标连续失败 2 次，标记为“待复核”，继续下一个目标。
+6. 每批完成后立即输出 heartbeat 进度，再启动下一批。
 
-由于 OpenClaw 的 LLM 有 60 秒空闲超时限制，执行时必须：
-1. **串行执行批次**：一批一批来，不并行启动多个子代理
-2. **每批最多 4-5 个目标**：快速完成每批
-3. **每批后必须输出进度**：发送 heartbeat 给用户，避免超时
-4. **单次 WebSearch 后立即总结**：不要等待多次搜索再输出
+### 步骤 4：分批追加写入追踪文件
 
-| 批次 | 目标编号 | 目标数量 | 说明 |
-|------|----------|----------|------|
-| Batch 1 | 1-5 | 5 个 | 启动搜索，完成后立即输出进度 |
-| Batch 2 | 6-10 | 5 个 | 必须在 Batch 1 完成后启动 |
-| Batch 3 | 11-15 | 5 个 | 必须在 Batch 2 完成后启动 |
-| Batch 4 | 16-20 | 5 个 | 必须在 Batch 3 完成后启动 |
-| Batch 5 | 21-25 | 5 个 | 必须在 Batch 4 完成后启动 |
-| Batch 6 | 26-30 | 5 个 | 必须在 Batch 5 完成后启动 |
-| Batch 7 | 31-34 | 4 个 | 必须在 Batch 6 完成后启动 |
-
-**每批执行流程**：
-1. 读取目标列表，筛选当前批次的目标
-2. 对每个目标执行 1-2 次 WebSearch
-3. 提取可用结果
-4. 立即输出当前批次进度（包含已更新的航司状态）
-5. 然后启动下一批次
-
-### 步骤 3.1：超时优化策略
-
-1. **串行批次执行**：每批最多 5 个目标，批次间必须有进度输出
-2. **单目标 quick search**：每个目标先执行 1 次核心查询（官网域名 + promo）
-3. **仅补充关键信息**：首次扫描只保留确认有效的优惠
-4. **连续失败 2 次时**：将该目标状态记为"待复核"，立即继续下一个目标
-5. **不因单目标失败中断全局任务**
-
-### 步骤 3.2：性能优化策略
-
-1. **优先查询官网**：直接用官网域名搜索，命中率最高
-2. **组合查询**：官网搜索失败时，添加 "promo"、"deal"、"offer" 等关键词
-3. **结果去重**：同一域名的相似结果只保留一条
-4. **增量检索**：若目标在近期已更新，优先保留并减少查询次数
-
-### 步骤 4：覆盖写入追踪文件
-
-默认覆盖写入 `references/promo_tracking.md`：
-1. 每完成一批次就写入一次
-2. 未显式指定时，清空旧内容后写入本轮结果
-3. 仅当用户明确要求"补充/续写/追加"时，使用续写模式
-4. 写入内容应包含状态总表与详情模板（按“记录模板”固定格式：
+写入 `workspace/skills/airline-promo-searcher/references/promo_tracking.md` 规则：
+1. 任务开始先清空旧内容，并写入本轮汇总头部。
+2. 每完成一批次立即追加写入，不等待全量完成。
+3. 每次写入都必须包含状态总表与详情模板（固定为“记录模板”）：
  `## 记录模板`
    `### 目标名称（中文名 / 英文名）`
    `| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |`
    `|----------|----------|--------|----------|`
-   `| 示例 | 示例 | 示例 | 示例 |`）
+   `| 示例 | 示例 | 示例 | 示例 |`
+4. 禁止在内存中累计后一次性写入。
 
-### 步骤 5：回传纯文本摘要
+### 步骤 5：回传固定格式纯文本
 
-1. 汇总总目标数和完成情况
-2. 列出重点发现和待复核数量
-3. 给出追踪文件路径
-4. 仅返回纯文本，不包含 Markdown 格式
+1. 严格使用以下 4 行模板回传，不得添加额外段落：
+   `搜索完成：<已完成数>/<总数>`
+   `写入文件：workspace/skills/airline-promo-searcher/references/promo_tracking.md`
+   `有效优惠：<条数>，待复核：<条数>`
+   `说明：详情已按“记录模板”写入追踪文件`
+2. 禁止回传“航司核心优惠/平台核心优惠/1-34 编号列表”这类长摘要。
+3. 仅返回纯文本，不包含 Markdown 格式。
 
 ## 注意事项
 
-1. 优先使用官网、航司新闻室、官方社媒、可信平台
-2. 仅保留当前有效或明确有效期的优惠
-3. 必须写入 `references/promo_tracking.md`
-4. 禁止创建 `references/airline-promo-*.md` 文件
-5. 使用 `WebSearch` 工具
-6. **每批次完成后必须输出进度 heartbeat**，避免 LLM 空闲超时
-7. 若 `WebSearch` 当前不可用，输出"本轮检索受限"并保留可验证来源
+1. 接口字段必须完整保留：`TYPE/CHEAPBOAT/CODE/AIRCODE/SHORTNAME/BELONG/URL`；以这些字段为准，不做字段重命名或删减。
+2. 优先使用官网、航司新闻室、官方社媒、可信平台。
+3. 仅保留当前有效或有效期明确的优惠；无法确认时标记“需人工复核”。
+4. 必须写入 `workspace/skills/airline-promo-searcher/references/promo_tracking.md`，禁止创建 `workspace/skills/airline-promo-searcher/references/airline-promo-*.md`。
+5. 仅使用 `WebSearch`；每批次完成后必须输出 heartbeat 进度，避免空闲超时。
+6. 若 `WebSearch` 不可用，输出“本轮检索受限”并保留可验证来源。
+7. 结果展示优先级固定：先写文件模板，再回传 4 行摘要；不得输出自由发挥的长文本。
+8. 统一执行“先清空 + 分批追加”的单一路径，不使用续写模式分支。
 
 ## 参考资料
 
-- `references/airlines_list.md`
-- `references/promo_tracking.md`
+- `workspace/skills/airline-promo-searcher/references/airlines_list.md`
+- `workspace/skills/airline-promo-searcher/references/promo_tracking.md`
