@@ -31,10 +31,12 @@ Thumbs.db
 agents/main/sessions/sessions.json
 identity/device-auth.json
 devices/paired.json
+update-check.json
 
 # Runtime session artifacts
 agents/main/sessions/*.jsonl
 agents/main/sessions/boot-*.jsonl
+agents/main/sessions/*.jsonl.lock
 
 # Runtime memory snapshots
 workspace/memory/*.md
