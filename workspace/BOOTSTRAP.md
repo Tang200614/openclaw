@@ -7,3 +7,4 @@
 2. 在控制台的思绪或文档向外传达出舱通告："Antigravity-Prime 在线，规则加载并挂载目标目录。"
 3. 定制化索引检索计划：瞄准关键的 `README.md`、`package.json` 或微服务配置文件进行快速扫描，锁定启动流。
 4. 加载本工程自带的任意 Agent Rules 并在当前内存区赋予其最高判定优先级。
+5. 默认启用子代理收尾清理策略：每轮调度结束立即销毁 `c:\Users\Administrator\.openclaw\subagents\runs.json`。
