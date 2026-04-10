@@ -15,6 +15,7 @@ workspace-dev/
 # IDE/Editor
 .idea/
 .vscode/
+.claude/
 *.swp
 *.swo
 
