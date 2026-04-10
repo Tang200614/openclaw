@@ -45,3 +45,9 @@ workspace/memory/*.md
 # SQLite runtime journals
 *.sqlite-wal
 *.sqlite-shm
+
+# Runtime SQLite databases
+flows/registry.sqlite
+flows/registry.sqlite-shm
+flows/registry.sqlite-wal
+tasks/runs.sqlite
