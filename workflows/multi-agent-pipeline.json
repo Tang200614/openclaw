@@ -1,0 +1,63 @@
+{
+  "name": "multi-agent-pipeline",
+  "version": "1.0.0",
+  "description": "多Agent协作流水线 - 自动拆分、并行执行、结果汇总",
+  "agents": {
+    "coordinator": {
+      "agent": "coordinator",
+      "maxSubtasks": 5,
+      "timeout": 30000
+    },
+    "workers": {
+      "agent": "worker",
+      "poolSize": 3,
+      "timeout": 60000
+    },
+    "aggregator": {
+      "agent": "aggregator",
+      "timeout": 30000
+    }
+  },
+  "workflow": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "任务分析",
+        "agent": "coordinator",
+        "action": "analyze_and_split",
+        "output": "subtasks"
+      },
+      {
+        "step": 2,
+        "name": "并行执行",
+        "agent": "workers",
+        "action": "execute_parallel",
+        "dependsOn": [1],
+        "output": "results",
+        "parallel": true
+      },
+      {
+        "step": 3,
+        "name": "结果汇总",
+        "agent": "aggregator",
+        "action": "aggregate",
+        "dependsOn": [2],
+        "output": "finalAnswer"
+      }
+    ]
+  },
+  "routing": {
+    "rules": [
+      {
+        "pattern": "^(分析|研究|调查|复杂|多步骤|拆分)",
+        "workflow": "multi-agent-pipeline",
+        "priority": 1
+      },
+      {
+        "condition": "task.complexity > 3",
+        "workflow": "multi-agent-pipeline",
+        "priority": 2
+      }
+    ]
+  }
+}

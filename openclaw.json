@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.4.5",
-    "lastTouchedAt": "2026-04-08T08:07:31.161Z"
+    "lastTouchedVersion": "2026.4.8",
+    "lastTouchedAt": "2026-04-13T01:56:21.567Z"
   },
   "models": {
     "mode": "merge",
@@ -83,8 +83,8 @@
     "ackReactionScope": "group-mentions"
   },
   "wizard": {
-    "lastRunAt": "2026-04-08T03:22:14.956Z",
-    "lastRunVersion": "2026.4.5",
+    "lastRunAt": "2026-04-13T01:56:21.119Z",
+    "lastRunVersion": "2026.4.8",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   }

@@ -1,7 +1,8 @@
 # 航空优惠追踪记录
 
-> 更新时间: 2026-04-10
+> 更新时间: 2026-04-13
 > 当前年份: 2026
+> 搜索范围: 21 家航司全量刷新
 
 ---
 
@@ -9,9 +10,9 @@
 
 | 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
 |----------|----------|--------|----------|
-| 促销码折扣 | 使用代码 BOW5J 享受10% OFF（最高USD 5） | 2026年4月有效 | https://www.wego.com/pages/cebu-pacific-promo-code |
-| 折扣码优惠 | 最高30% OFF 折扣码（适用于2026年4月预订） | 2026年4月有效 | https://iprice.ph/coupons/cebu-pacific/ |
-| 平台特价 | Trip.com 东南亚度假优惠：台北飞马尼拉往返机票最低NT$3,673起 | 2026/01/13 - 2027/01/01 | https://tw.trip.com/flights/airline-5j/cebu-pacific-air/ |
+| 超级座位特惠 | 台湾至马尼拉单程基础票价低至10元新台币 | 2026年3月1日至9月30日出行 | https://news.3b8.net/archives/20224 |
+| 30周年庆优惠 | 全航线促销，机票适用出行时段2026年11月1日至2027年3月31日 | 购票期未明确 | https://www.prnewswire.com/apac/zh/news-releases/cebu-pacific30-302705738.html |
+| 限时促销 | 多条国内及国际航线单程基础票价促销 | 出行期：2026年4月1日至10月31日 | https://www.instagram.com/p/DU8t_U2jZhj/ |
 
 ---
 
@@ -19,13 +20,18 @@
 
 | 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
 |----------|----------|--------|----------|
-| 每周目的地特惠 | 国际航班（本周：留尼汪岛、上海）最高10%折扣，使用优惠码"FLYMORE" | 订票：2026-04-08至2026-04-14；出行：2026-04-15至2026-09-30 | https://www.goindigo.in/campaigns/destinations-of-the-week-offers.html |
+| 目的地周促销 | 精选国际目的地基础票价最高10%折扣 | 预订期：2026年4月8日至4月14日；出行期：2026年4月15日至9月30日 | https://www.goindigo.in/campaigns/destinations-of-the-week-offers.html |
+| 促销码优惠 | 使用促销码FLYMORE/BOW6E享受优惠 | 视具体促销码而定 | https://www.goindigo.in/campaigns/destinations-of-the-week-offers.html |
+| 新用户优惠 | 最高50%折扣（国内及国际航班） | 2026年4月有效 | https://www.grabon.in/indigo-coupons/ |
 
 ---
 
 ### 亚洲亚航 / AXM
 
-**无有效优惠**
+| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
+|----------|----------|--------|----------|
+| Wego平台优惠 | 使用促销码BOWAK享受10%折扣（最高5美元） | 2026年有效 | https://www.wego.com/pages/air-asia-promo-code |
+| Value Pack额外优惠 | Value Pack预订额外10%折扣 | 仅限初始预订时购买 | https://newsroom.airasia.com/news/airasia-offers-up-to-99-off-fares-with-all-seats-all-flights-sale |
 
 ---
 
@@ -33,11 +39,10 @@
 
 | 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
 |----------|----------|--------|----------|
-| 春季限时票价优惠 | 精选航线最低77折起，台北-曼谷往返4,695元起(未税)、台北-东京往返9,865元起(未税)、台北-旧金山往返24,349元起(含税)等 | 购票期：2026/03/27~2026/04/20<br>旅行期：2026/04/01~2026/08/31(各航线不同) | https://www.evaair.com/zh-tw/plan-and-book/special-offers/promotions/flight/FLWMARCH.html |
-| 哩程/航段双重加码 | 无限万哩游会员购买长荣航空国际线机票，最高可获赠5,000卡籍哩程及额外卡籍航段数 | 注册期：2026/01/02~2026/06/30<br>搭乘期：2026/01/06~2026/06/30 | https://www.evaair.com/en-us/plan-and-book/special-offers/promotions/ff-promotion/2026MilesnSectorsBoost.html |
-| 华盛顿航线开航优惠 | 无限万哩游会员购买台北-华盛顿特区航线机票，单程最高额外获赠7,000哩程+7,000奖励哩程+0.75航段 | 注册期：2026/03/18~2026/09/30<br>搭乘期：2026/06/26~2026/09/30 | https://www.evaair.com/en-us/plan-and-book/special-offers/promotions/ff-promotion/IAD_Debut.html |
-| L.A.航线升等7折优惠 | 指定洛杉矶航班升等享7折优惠，经济升豪经最低12,950哩程起 | 旅行期：2026/04/01~2026/05/31、2026/09/01~2026/10/31 | https://www.evaair.com/en-us/plan-and-book/special-offers/promotions/ff-promotion/202603_LAX_Upgrade_Promo.html |
-| HERTZ租车优惠 | HERTZ全球租车享10%折扣+最高2,000奖励哩程 | 预订至：2026/04/30<br>取车期至：2026/06/30 | https://www.evaair.com/en-us/plan-and-book/special-offers/promotions/ |
+| 春季旅展 | 指定航线机票77折起：桃园-曼谷4,695元起、桃园-东京9,865元起等 | 购票期：至2026年4月20日；出行期：至2026年8月31日 | https://www.evaair.com/zh-tw/about-eva-air/news/news-releases/2026-03-27-spring-news.html |
+| 无限万哩游会员租车优惠 | 预订Hertz租车最高可享1,500哩并享9折优惠 | 预订期：至2026年4月30日 | https://www.evaair.com/sc-cn/plan-and-book/special-offers/promotions/ |
+| 华盛顿新航线开航优惠 | 会员购买华盛顿航线机票享额外哩程加赠（最高41,504哩） | 首航2026年6月26日 | https://www.evaair.com/zh-tw/about-eva-air/news/news-releases/2026-03-27-spring-news.html |
+| 洛杉矶升等礼遇 | 会员享舱位升等7折优惠 | 未明确截止日期 | https://www.evaair.com/zh-tw/about-eva-air/news/news-releases/2026-03-27-spring-news.html |
 
 ---
 
@@ -45,33 +50,14 @@
 
 | 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
 |----------|----------|--------|----------|
-| 春季精选航线优惠 | 台湾出发精选航线81折起，适用于北美、东北亚、东南亚、香港/大陆等航线 | 购票期：2026/04/08~2026/04/19<br>出发期：2026/04/08~2026/10/31（不同航线有差异） | https://flights.china-airlines.com/zh-tw/spring_sale |
-| 新加坡银行卡优惠 | 使用CITI/DBS/POSB/OCBC/UOB/Maybank/HSBC银行卡享6%折扣，适用于台湾、日本、韩国、北美航线 | 购票期：即日起至2026/12/31<br>旅行期：即日起至2027/12/31 | https://www.china-airlines.com/sea/en/discover/promotion/partner-program/SINCI_Bank_Promotion_Index |
-| 香港出发春游台湾优惠 | 香港飞台北往返HKD640起（未税），适用经济舱特惠(L)舱等 | 开票期：即日起至2026/08/31<br>出发期：即日起至2026/08/31（不适用于2026/04/02-04/07） | https://www.china-airlines.com/hk/zh/discover/promotion/2026-twn-promo |
-| 德国早鸟优惠 | 提前60天预订，全航线最高15%折扣（经济舱15%、商务舱10%） | 长期有效（排除夏季及圣诞节旺季） | https://flights.china-airlines.com/en-de/fra_2026_early_bird |
+| 渡轮联程优惠 | 华航旅客独享三井向日葵渡轮7折优惠 | 2026/02/01 – 2026/09/30 | https://flights.china-airlines.com/zh-tw/tpe_20260128_sunflower |
+| 精选航线优惠 | 华航精选航线78折起 | 2026/03/11 – 2026/04/02 | https://www.instagram.com/p/DVtAKZuAdLS/ |
 
 ---
 
 ### 国泰航空 / CPA
 
-| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
-|----------|----------|--------|----------|
-| 官网直销优惠 | 会员预订享高达8%折扣 + 3,000奖励里程，代码：CXDIRECT6/CXDIRECT8 | 长期有效 | https://flights.cathaypacific.com/en_KR/offers/reason-to-book-2026.html |
-| 学生优惠 | 学生专属票价，高达10%折扣 + 额外行李额度 + 免费改签 | 2026年12月31日 | https://www.savoo.co.uk/brands/cathay-pacific-discount-codes |
-| 折扣码优惠 | 全场10%折扣码 | 2026年5月9日 | https://www.discoup.com/us/offer-code-discount-cathay-pacific.html |
-| 折扣码优惠 | 学生10%折扣码 | 2026年5月9日 | https://www.discoup.com/us/offer-code-discount-cathay-pacific.html |
-| 折扣码优惠 | 家庭套餐25%折扣码 | 2026年5月9日 | https://www.discoup.com/us/offer-code-discount-cathay-pacific.html |
-| 折扣码优惠 | 15%折扣码（Cathay World Elite Mastercard持卡人） | 2026年5月24日 | https://www.discoup.com/us/offer-code-discount-cathay-pacific.html |
-| 限时特惠 | 飞往巴厘岛的航班，起价$1,050 | 2026年4月28日 | https://www.discoup.com/us/offer-code-discount-cathay-pacific.html |
-| 限时特惠 | 飞往新加坡的航班，起价$1,029 | 2026年7月6日 | https://www.discoup.com/us/offer-code-discount-cathay-pacific.html |
-| 限时特惠 | 飞往孟买的航班，起价$752 | 2026年5月20日 | https://www.discoup.com/us/offer-code-discount-cathay-pacific.html |
-| 香港中转优惠 | 香港停留计划，经济舱最高省£80/人，商务舱最高省£150/人 | 限额945张经济舱+220张商务舱 | https://www.groupon.co.uk/discount-codes/cathay-pacific |
-| 24小时免费取消 | 国泰会员预订享24小时内免费取消 | 2026年4月17日 | https://www.groupon.co.uk/discount-codes/cathay-pacific |
-| 礼品卡奖励 | 订单满£750享£20礼品卡 | 2026年4月30日 | https://www.groupon.co.uk/discount-codes/cathay-pacific |
-| 礼品卡奖励 | 订单满£850享£15礼品卡 | 2026年6月30日 | https://www.groupon.co.uk/discount-codes/cathay-pacific |
-| 单程优惠 | 伦敦出发单程机票£629起（飞往香港、新加坡、曼谷、马尼拉） | 2026年4月16日 | https://www.groupon.co.uk/discount-codes/cathay-pacific |
-| 香港往返优惠 | 香港往返机票£910起 | 2026年4月16日 | https://www.groupon.co.uk/discount-codes/cathay-pacific |
-| 台北往返优惠 | 台北往返机票£970起 | 2026年4月17日 | https://www.groupon.co.uk/discount-codes/cathay-pacific |
+**无有效优惠**
 
 ---
 
@@ -79,30 +65,15 @@
 
 | 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
 |----------|----------|--------|----------|
-| 现金+里程优惠 | 搭乘前往/离开赫尔辛基的航班，使用现金+里程支付享受特惠：2,000里程=20美元（经济舱/豪华经济舱）；2,000里程=40美元（商务舱） | 预订期：2026年2月16日-10月31日；旅行期：2026年10月1日-12月31日 | https://www.emirates.com/cn/chinese/special-offers/helsinki-cash-miles-offer/ |
-| 双倍里程 | 搭乘阿联酋航空航班前往/离开赫尔辛基，赚取双倍Skywards里程 | 预订期：2026年2月16日-10月31日；旅行期：2026年10月1日-12月31日 | https://www.emirates.com/cn/chinese/special-offers/helsinki-double-miles-offer/ |
-| 学生优惠 | 16-31岁学生使用优惠代码"STUDENT"预订，经济舱票价高达9折，豪华经济舱和商务舱95折优惠；免费多携带10公斤行李或1件额外行李；机上Wi-Fi套餐优惠 | 截止2027年3月31日 | https://www.emirates.com/cn/chinese/special-offers/student-special-fares/ |
-| 信用卡优惠码 | 优惠码"AUVISA2"：使用有效Visa卡支付，最高可节省550澳元（适用于澳大利亚） | 截止2026年4月30日 | https://zh-cn.coupons-promo-code.com/coupons/emirates/ |
-| 会员优惠码 | 优惠码"MYMAYB1"：指定预订最高额外50美元折扣 | 截止2026年4月30日 | https://zh-cn.oxideals.com/view/emirates/ |
-| Skywards会员优惠 | Skywards会员使用优惠码可享受精选机上服务15%折扣 | 截止2026年6月30日 | https://zh-cn.coupons-promo-code.com/coupons/emirates/ |
-| 迪拜往返特价 | 预订往返迪拜航班，价格499美元起（无需优惠码） | 截止2026年4月30日 | https://zh-cn.coupons-promo-code.com/coupons/emirates/ |
+| 机票折扣码 | 使用优惠码 **BOWEK** 享10%折扣（最高USD 5优惠） | 2026年4月有效 | https://www.wego.com/pages/emirates-promo-code |
+| 机票折扣码 | 10% OFF 经济舱 & 5% OFF 商务舱（学生认证） | 2026年有效 | https://www.independent.co.uk/deals/emirates-discount-code-b2708797.html |
+| 机票酒店套餐 | MyBenefits持卡人通过Emirates Holidays预订机票酒店套餐可享5%折扣 | 2026年有效 | https://www.independent.co.uk/deals/emirates-discount-code-b2708797.html |
 
 ---
 
 ### 福莱尔航空 / FRE
 
-| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
-|----------|----------|--------|----------|
-| 加拿大航线促销 | CANADA30 - 加拿大航线最高30%折扣（仅限基础票价） | 2026年4月12日截止 | https://www.flyflair.com/flair-home |
-| 复活节促销 | EGGSTRA30 - 复活节航班促销30%折扣 | 2026年4月（当前有效） | https://simplycodes.com/store/flyflair.com |
-| 促销代码 | 75PROMO - 最高75%折扣 | 2026年2月（持续有效） | https://flyflair.knoji.com/promo-codes/ |
-| 促销代码 | NASTYDEALS - 额外35%折扣 | 2026年2月（持续有效） | https://flyflair.knoji.com/promo-codes/ |
-| 促销代码 | FLYMORE30 - 最高30%折扣 | 2026年1月12日上线（持续有效） | https://flyflair.knoji.com/promo-codes/ |
-| 促销代码 | FEBESCAPE - 在线预订最高30%折扣 | 2026年2月2日上线（持续有效） | https://flyflair.knoji.com/promo-codes/ |
-| 促销代码 | BLUENOMORE - 最高25%折扣 | 2026年1月19日上线（持续有效） | https://flyflair.knoji.com/promo-codes/ |
-| 会员优惠 | Flair Flyers Club会员可获得高达50%基础票价折扣 | 2026年全年有效 | https://www.facebook.com/flairairlines |
-| 军事折扣 | 军人折扣25% | 2026年全年有效 | https://simplycodes.com/store/flyflair.com |
-| 邮件订阅优惠 | 订阅邮件获取独家折扣和促销 | 2026年全年有效 | https://simplycodes.com/store/flyflair.com |
+**无有效优惠**
 
 ---
 
@@ -110,34 +81,20 @@
 
 | 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
 |----------|----------|--------|----------|
-| 夏季促销活动 | JALunLun Summer Sale：购票赢取ReFa Fine Bubble Pure淋浴喷头、BALMUDA烤面包机、国内往返机票兑换券等抽奖奖品 | 销售期：2026年3月17日-4月14日；活动持续至奖品派发完 | https://en.traicy.com/posts/2026032534168/ |
-| 里程双倍累积 | 法兰克福-东京航线：注册后可获得双倍里程奖励，额外里程等于标准飞行里程 | 注册期：2026年4月2日-8月31日；旅行期：2026年5月19日-8月31日 | https://www.jal.co.jp/jp/en/121campaign/2026/nrtfra-wmile/ |
-| JALCARD会员奖励 | 首次乘坐JAL集团航班可获得5,000 bonus FLY ON Points积分奖励 | 促销期：2026年1月1日-12月31日；注册期：2025年12月22日-2026年12月31日 | https://www.jal.co.jp/jp/en/121campaign/2026/flyon-jalcard/ |
-| 国际兑换机票折扣 | JALCARD navi会员预订国际往返经济舱兑换机票可享受折扣里程（具体折扣率因航线而异） | 持续进行中，具体以官网查询为准 | https://www.jal.co.jp/jp/en/121campaign/navi_mile/inter/ |
-| Japan Explorer Pass | 专为访日国际旅客提供的日本国内线特惠票价，覆盖30多个城市 | 全年有效 | https://www.jal.co.jp/flights/en-us/japan-domestic-routes |
+| 优惠码折扣 | 使用优惠码BOWJL享10%折扣（最高减免$5） | 2026年4月 | https://www.wego.com/pages/japan-airlines-promo-code |
+| 里程奖励 | 法兰克福-东京航线双倍里程活动 | 注册期: 2026-04-02 至 2026-08-31；旅行期: 2026-05-19 至 2026-08-31 | https://www.jal.co.jp/jp/en/121campaign/2026/nrtfra-wmile/ |
 
 ---
 
 ### 大韩航空 / KAL
 
-| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
-|----------|----------|--------|----------|
-| 釜山出发中华圈航线促销 | 釜山出发前往上海(浦东)、青岛7%折扣；北京、台北10%折扣 | 预订期：即日起至2026年4月30日；旅行期：2026年4月1日至6月30日 | https://www.mk.co.kr/cn/business/11996811 |
-| 促销码折扣（澳洲市场） | 促销码：APR26，最高可享8%折扣（含商务舱） | 预订期：2026年4月1日至4月30日；旅行期：2026年4月1日至10月24日 | https://www.instagram.com/reel/DWkgoLwjcyy/ |
+**无有效优惠**
 
 ---
 
 ### 全日空 / ANA
 
-| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
-|----------|----------|--------|----------|
-| 哩程兑换优惠 | 国际航线经济舱哩程票最高50%折扣，适用于亚洲、大洋洲、夏威夷等航线。例如：东京-香港单程4,250哩、东京-曼谷单程7,500哩、东京-檀香山单程8,750哩 | 预订期：2026年2月20日-28日；旅行期：2026年4月1日-9月30日 | https://livefromalounge.com/ana-mileage-clubs-international-award-sale-through-february-28-2026-including-indian-routes/ |
-| 抽奖活动 | ANA/NCBF樱花节抽奖，奖品为2张经济舱往返东京机票（从美国ANA门户机场出发） | 2026年3月2日-4月6日 | https://nationalcherryblossomfestival.org/ana-sweepstakes-2026/ |
-| Hello Blue Sale促销（印度） | 德里出发INR 44,800起、孟买出发INR 43,500起飞往日本 | 促销期：2026年4月1日-7日；旅行期：德里2026/6/1-12/31、孟买2026/5/1-12/29 | https://www.ana.co.jp/en/in/plan-book/promotions/hellobluesale/ |
-| Hello Blue Sale促销（马来西亚） | 马来西亚出发飞往日本，票价从MYR 1,990起 | 促销期：2026年4月1日-7日；旅行期：2026年6月1日-12月18日 | https://www.ana.co.jp/en/my/plan-book/promotions/hellobluesale/ |
-| 马尼拉15周年纪念促销 | 菲律宾马尼拉航线最高15%折扣 | 促销期：2026年3月5日-31日；旅行期：2026年3月5日-12月31日 | https://www.ana.co.jp/en/ph/plan-book/promotions/15-anniversary-promo/ |
-| 中国大陆出发促销 | 北京、上海、广州、深圳、青岛出发飞往美加航线，经济舱单程3,000元起、往返3,500元起 | 销售至2026年5月31日；旅行期至2026年12月31日 | https://www.ana.co.jp/zh/cn/ |
-| 台湾出发促销 | 松山-东京羽田航线NT$11,750起；新春促销出发期2026/5/09~6/29等 | 销售期至2026年3月27日；旅行期2026年4月-9月 | https://www.facebook.com/TaiwanAirTkt/posts/ |
+**无有效优惠**
 
 ---
 
@@ -145,11 +102,106 @@
 
 | 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
 |----------|----------|--------|----------|
-| 春季假期套餐优惠 | 通过Spirit Vacations预订航班+酒店套餐可享受高达30%折扣，Free Spirit会员每预订一个度假套餐可赚取500积分 | 持续有效（2026年春季假期适用） | https://ir.spirit.com/news/news-details/2026/Soaring-to-Sun-and-Sand-Spirit-Airlines-Unveils-Top-Searched-Spring-Break-Beach-Destinations-for-2026/default.aspx |
-| 促销代码折扣 | 使用促销代码可享受高达90%折扣（如90PCT代码，适用于特定订单） | 2026年4月有效 | https://simplycodes.com/store/spirit.com |
-| 促销代码折扣 | 使用促销代码可享受高达10%折扣（适用于特定商品） | 2026年4月有效 | https://simplycodes.com/store/spirit.com |
-| 度假套餐优惠 | 预订度假套餐可享受高达$112折扣 | 2026年4月有效 | https://simplycodes.com/store/spirit.com |
-| Free Spirit积分奖励 | 预订度假套餐赚取500 Free Spirit积分 | 持续有效，积分将在旅行完成后30天内计入账户 | https://ir.spirit.com/news/news-details/2026/Soaring-to-Sun-and-Sand-Spirit-Airlines-Unveils-Top-Searched-Spring-Break-Beach-Destinations-for-2026/default.aspx |
+| 春假套餐 | Spirit Vacations春假套餐：机票+酒店/租车享最高30%折扣 | 2026年春假季 | https://ir.spirit.com/news/news-details/2026/Soaring-to-Sun-and-Sand-Spirit-Airlines-Unveils-Top-Searched-Spring-Break-Beach-Destinations-for-2026/default.aspx |
 
 ---
 
+### 卡塔尔航空 / QTR
+
+| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
+|----------|----------|--------|----------|
+| 新春双人同行优惠 | 双人同行机票8折起，会员额外获赠2,500-5,000 Avios里程奖励 | 预订：2026年2月5日-2月15日；旅行：2026年2月8日-9月30日 | https://www.qatarairways.com/zh-cn/offers/chinese-new-year-2026.html |
+| 招商银行信用卡优惠 | 机票优惠高达88折（优惠代码QRCNCMB） | 长期有效 | https://www.qatarairways.com/zh-cn/offers/hello-2026.html |
+| Visa卡持卡人优惠 | 机票高达9折优惠 | 2026年有效 | https://dealy.tw/shop/qatarairways.com |
+
+---
+
+### 狮航 / TLM
+
+**无有效优惠** (官网无法访问)
+
+---
+
+### 新加坡航空 / SIA
+
+| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
+|----------|----------|--------|----------|
+| 杭州新航线优惠 | 杭州-新加坡航线CNY1,675起 | 销售：2026年3月23日-4月12日；出发：2026年6月3日-9月24日 | https://www.singaporeair.com/zh_CN/cn/plan-travel/local-promotions/local-promotion-in-china/ |
+| 学生专属优惠 | 高达50公斤托运行李额、专属折扣及其他礼遇 | 长期有效 | https://www.singaporeair.com/zh_CN/cn/plan-travel/local-promotions/local-promotion-in-china/ |
+| 三人同行优惠 | 预订3张或以上指定舱等机票享高达9折优惠 | 即日起至2026年5月12日 | https://www.singaporeair.com/zh_TW/hk/plan-travel/local-promotions/hk-local-promotion/ |
+| Visa卡现金回赠 | 单签港币$8,000以上享港币$800现金回赠 | 2025年10月1日-2026年4月30日 | https://www.singaporeair.com/zh_TW/hk/plan-travel/local-promotions/hk-local-promotion/ |
+| KrisFlyer里程兑换优惠 | 精选目的地航班兑换享30%优惠 | 长期活动 | https://www.singaporeair.com/zh_CN/cn/plan-travel/local-promotions/local-promotion-in-china/ |
+
+---
+
+### 土耳其航空 / THY
+
+| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
+|----------|----------|--------|----------|
+| 商务舱买一送一 | 购买一张商务舱机票，第二张仅需支付税费 | 长期活动 | https://www.turkishairlines.com/zh-cn/campaigns |
+| 残疾乘客优惠 | Miles&Smiles残疾会员国内航班20%折扣，国际航班25%折扣（从土耳其出发） | 长期有效 | https://www.turkishairlines.com/zh-cn/campaigns |
+
+---
+
+### 香港快运 / HKE
+
+| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
+|----------|----------|--------|----------|
+| 支付宝+限时优惠 | 指定航线使用当地电子支付方式享最高30%折扣 | 2026年进行中 | https://www.hkexpress.com/en/Plan/Special-Offers/Promotions/alipayplus_flashsale_20250626 |
+
+---
+
+### 越捷航空 / VJC
+
+| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
+|----------|----------|--------|----------|
+| 0泰铢票价促销 | 泰国越捷促销，国内及国际航线票价低至0泰铢起（不含税费） | 预订期：进行中至2026-02-28；出行期：2026-03-16至2026-10-31 | https://eglobaltravelmedia.com.au/2026/02/12/vietjet-thailands-0-baht-fare-fever |
+
+---
+
+### 越南航空 / HVN
+
+**无有效优惠**
+
+---
+
+### 维兹航空 / WZZ
+
+| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
+|----------|----------|--------|----------|
+| 粉色星期五促销 | 2025年12月1日至2026年3月26日航班30%折扣 | 预订期：进行中；出行期：2025-12-01至2026-03-26 | https://passport.news/article/1417 |
+| 夏季航班15%折扣 | 2025年12月15日至2026年6月30日航班最高15%折扣 | 预订期：进行中；出行期：2025-12-15至2026-06-30 | https://www.facebook.com/wizzair/posts/1280441190788957/ |
+| 新航线开航促销 | 索菲亚至赫尔格达、沙姆沙伊赫、地拉那新航线机票开售 | 出行期：赫尔格达2026-10-25起；沙姆沙伊赫2026-07-05起 | https://www.wizzair.com/en-gb/information-and-services/about-us/news/2026/03/04/wizz-air-celebrates-march-3-with-a-special-promotion-and-new-routes-from-sofia |
+
+---
+
+### 墨西哥VOLARIS / VOI
+
+| 优惠类型 | 优惠内容 | 有效期 | 来源链接 |
+|----------|----------|--------|----------|
+| 优惠码促销 | 使用优惠码 **BOWY4** 享受10%折扣（最高减USD $5） | 有效中 | https://www.wego.com/pages/volaris-promo-code |
+| 优惠码 VMXH30 | 机票限时特价，立享30%折扣 | 有效中 | https://saving.creaders.net/volaris |
+| 特价航班 - 墨西哥城 | 从圣何塞(SJC)飞往墨西哥城(MEX)低至$96 | 有效中 | https://saving.creaders.net/volaris |
+| 特价航班 - 坎昆 | 从洛杉矶(LAX)飞往坎昆(CUN)低至$99 | 有效中 | https://saving.creaders.net/volaris |
+| 特价航班 - 瓜达拉哈拉 | 从夏洛特(CLT)飞往瓜达拉哈拉(GDL)低至$117 | 有效中 | https://saving.creaders.net/volaris |
+| 新航线促销 | 33条新航线低至$65 | 2026-04-24 | https://saving.creaders.net/volaris |
+| VClub会员优惠 | VClub会员额外享受10%折扣 | 有效中 | https://www.volaris.com/en-us |
+| Travel Tuesday | Travel Tuesday航班特价活动 | 定期举办 | https://www.volaris.com/en-mx/travel-tuesday |
+
+---
+
+## 汇总统计
+
+| 状态 | 数量 | 航司 |
+|------|------|------|
+| ✅ 有有效优惠 | 15 家 | CEB, IGO, AXM, EVA, CAL, UAE, JAL, NKS, QTR, SIA, THY, HKE, VJC, WZZ, VOI |
+| ❌ 无有效优惠 | 5 家 | CPA, FRE, KAL, ANA, HVN |
+| 🔒 访问受限 | 1 家 | TLM |
+
+**重点推荐优惠** (2026-04-13 更新):
+- 🔥 **宿雾航空**: 台湾-马尼拉单程低至10元新台币
+- 🔥 **长荣航空**: 春季旅展77折起 (4/20截止)
+- 🔥 **靛蓝航空**: 国际航线10%折扣 (4/14截止)
+- 🔥 **VOLARIS**: 新航线低至$65 (4/24截止)、VMXH30享30%折扣
+- 🔥 **日本航空**: BOWJL优惠码10%折扣 (4月有效)
+- 🔥 **新加坡航空**: 杭州新航线CNY1,675起
