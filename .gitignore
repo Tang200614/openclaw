@@ -28,6 +28,9 @@ Thumbs.db
 *.temp
 *.reset.*
 
+# Local understand config
+.understand-anything/.understandignore
+
 # Sessions/Auth local state
 agents/main/sessions/sessions.json
 identity/device-auth.json
