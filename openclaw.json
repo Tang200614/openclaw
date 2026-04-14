@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.4.8",
-    "lastTouchedAt": "2026-04-13T01:56:21.567Z"
+    "lastTouchedAt": "2026-04-14T07:13:03.581Z"
   },
   "models": {
     "mode": "merge",
@@ -40,6 +40,9 @@
       "maxConcurrent": 4,
       "subagents": {
         "maxConcurrent": 8
+      },
+      "compaction": {
+        "mode": "safeguard"
       }
     }
   },
@@ -48,7 +51,44 @@
       "search": {
         "enabled": false
       }
-    }
+    },
+    "alsoAllow": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field",
+      "feishu_bitable_app_table_record",
+      "feishu_bitable_app_table_view",
+      "feishu_calendar_calendar",
+      "feishu_calendar_event",
+      "feishu_calendar_event_attendee",
+      "feishu_calendar_freebusy",
+      "feishu_chat",
+      "feishu_chat_members",
+      "feishu_create_doc",
+      "feishu_doc_comments",
+      "feishu_doc_media",
+      "feishu_drive_file",
+      "feishu_fetch_doc",
+      "feishu_get_user",
+      "feishu_im_bot_image",
+      "feishu_im_user_fetch_resource",
+      "feishu_im_user_get_messages",
+      "feishu_im_user_get_thread_messages",
+      "feishu_im_user_message",
+      "feishu_im_user_search_messages",
+      "feishu_oauth",
+      "feishu_oauth_batch_auth",
+      "feishu_search_doc_wiki",
+      "feishu_search_user",
+      "feishu_sheet",
+      "feishu_task_comment",
+      "feishu_task_subtask",
+      "feishu_task_task",
+      "feishu_task_tasklist",
+      "feishu_update_doc",
+      "feishu_wiki_space",
+      "feishu_wiki_space_node"
+    ]
   },
   "commands": {
     "native": "auto",
@@ -76,8 +116,26 @@
       },
       "qwen": {
         "enabled": true
+      },
+      "feishu": {
+        "enabled": false
+      },
+      "openclaw-lark": {
+        "enabled": true
       }
-    }
+    },
+    "installs": {
+      "openclaw-lark": {
+        "source": "archive",
+        "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\openclaw-lark-l7YzuV\\larksuite-openclaw-lark-2026.4.7.tgz",
+        "installPath": "C:\\Users\\Administrator\\.openclaw\\extensions\\openclaw-lark",
+        "version": "2026.4.7",
+        "installedAt": "2026-04-14T07:12:57.500Z"
+      }
+    },
+    "allow": [
+      "openclaw-lark"
+    ]
   },
   "messages": {
     "ackReactionScope": "group-mentions"
@@ -87,5 +145,23 @@
     "lastRunVersion": "2026.4.8",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "webhookPath": "/feishu/events",
+      "dmPolicy": "allowlist",
+      "groupPolicy": "allowlist",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true,
+      "appId": "cli_a95761b7adbb9bc0",
+      "appSecret": "E89B9gQjnjLeELtAmVLQlcaldQHiGC5Q",
+      "allowFrom": [
+        "ou_c2212e15e67d32578503ad06d0d14110"
+      ]
+    }
   }
 }
