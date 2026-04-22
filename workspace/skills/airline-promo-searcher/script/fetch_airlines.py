@@ -1,10 +1,15 @@
-"""航司数据文件
-包含航空公司列表及搜索匹配逻辑
+"""获取航司数据模块
+- 优先从接口获取
+- 接口失败则用静态 AIRLINES 兜底
 """
 
-import re
+import json
+import urllib.request
 
+# 航司数据接口
+AIRLINE_LIST_URL = "http://ht.piaomou.com/servlet/ServiceServlet?method=getAirCompanyList&type=1"
 
+# 静态航司数据（兜底用）
 AIRLINES = [
     {
         "id": 1,
@@ -14,6 +19,7 @@ AIRLINES = [
         "cn_name": "宿雾航空",
         "iata_code": "5J",
         "icao_code": "CEB",
+        "belong": "PH(菲律宾)",
         "keywords": ["CEB", "宿雾航空", "5J"],
         "category": "airline",
         "website": "https://www.cebu-pacific.com/",
@@ -26,6 +32,7 @@ AIRLINES = [
         "cn_name": "靛蓝航空",
         "iata_code": "6E",
         "icao_code": "IGO",
+        "belong": "IN(印度)",
         "keywords": ["IGO", "靛蓝航空", "6E"],
         "category": "airline",
         "website": "https://www.goindigo.in/",
@@ -38,6 +45,7 @@ AIRLINES = [
         "cn_name": "亚洲亚航",
         "iata_code": "AK",
         "icao_code": "AXM",
+        "belong": "MY(马来西亚)",
         "keywords": ["AXM", "亚洲亚航", "AK"],
         "category": "airline",
         "website": "https://www.airasia.com/",
@@ -50,6 +58,7 @@ AIRLINES = [
         "cn_name": "长荣航空",
         "iata_code": "BR",
         "icao_code": "EVA",
+        "belong": "TW(台湾)",
         "keywords": ["EVA", "长荣航空", "BR"],
         "category": "airline",
         "website": "https://www.evaair.com/",
@@ -62,6 +71,7 @@ AIRLINES = [
         "cn_name": "中华航空",
         "iata_code": "CI",
         "icao_code": "CAL",
+        "belong": "TW(台湾)",
         "keywords": ["CAL", "中华航空", "CI"],
         "category": "airline",
         "website": "https://www.china-airlines.com/",
@@ -74,6 +84,7 @@ AIRLINES = [
         "cn_name": "国泰航空",
         "iata_code": "CX",
         "icao_code": "CPA",
+        "belong": "HK(香港)",
         "keywords": ["CPA", "国泰航空", "CX"],
         "category": "airline",
         "website": "https://www.cathaypacific.com/",
@@ -86,6 +97,7 @@ AIRLINES = [
         "cn_name": "阿联酋航",
         "iata_code": "EK",
         "icao_code": "UAE",
+        "belong": "AE(阿联酋)",
         "keywords": ["UAE", "阿联酋航", "EK"],
         "category": "airline",
         "website": "https://www.emirates.com/",
@@ -98,6 +110,7 @@ AIRLINES = [
         "cn_name": "福莱尔航空",
         "iata_code": "F8",
         "icao_code": "FRE",
+        "belong": "ES(西班牙)",
         "keywords": ["FRE", "福莱尔航空", "F8"],
         "category": "airline",
         "website": "https://flyflair.com/",
@@ -110,6 +123,7 @@ AIRLINES = [
         "cn_name": "日本航空",
         "iata_code": "JL",
         "icao_code": "JAL",
+        "belong": "JP(日本)",
         "keywords": ["JAL", "日本航空", "JL"],
         "category": "airline",
         "website": "https://www.jal.co.jp/",
@@ -122,6 +136,7 @@ AIRLINES = [
         "cn_name": "大韩航空",
         "iata_code": "KE",
         "icao_code": "KAL",
+        "belong": "KR(韩国)",
         "keywords": ["KAL", "大韩航空", "KE"],
         "category": "airline",
         "website": "https://www.koreanair.com/",
@@ -134,6 +149,7 @@ AIRLINES = [
         "cn_name": "全日空",
         "iata_code": "NH",
         "icao_code": "ANA",
+        "belong": "JP(日本)",
         "keywords": ["ANA", "全日空", "NH"],
         "category": "airline",
         "website": "https://www.ana.co.jp/",
@@ -146,6 +162,7 @@ AIRLINES = [
         "cn_name": "精神航空",
         "iata_code": "NK",
         "icao_code": "NKS",
+        "belong": "US(美国)",
         "keywords": ["NKS", "精神航空", "NK"],
         "category": "airline",
         "website": "https://www.spirit.com/",
@@ -158,6 +175,7 @@ AIRLINES = [
         "cn_name": "卡塔尔航空",
         "iata_code": "QR",
         "icao_code": "QTR",
+        "belong": "QA(卡塔尔)",
         "keywords": ["QTR", "卡塔尔航空", "QR"],
         "category": "airline",
         "website": "https://www.qatarairways.com/",
@@ -170,6 +188,7 @@ AIRLINES = [
         "cn_name": "狮航",
         "iata_code": "SL",
         "icao_code": "TLM",
+        "belong": "TH(泰国)",
         "keywords": ["TLM", "狮航", "SL"],
         "category": "airline",
         "website": "https://www.lionairthai.com/",
@@ -182,6 +201,7 @@ AIRLINES = [
         "cn_name": "新加坡航",
         "iata_code": "SQ",
         "icao_code": "SIA",
+        "belong": "SG(新加坡)",
         "keywords": ["SIA", "新加坡航", "SQ"],
         "category": "airline",
         "website": "https://www.singaporeair.com/",
@@ -194,6 +214,7 @@ AIRLINES = [
         "cn_name": "土耳其航",
         "iata_code": "TK",
         "icao_code": "THY",
+        "belong": "TR(土耳其)",
         "keywords": ["THY", "土耳其航", "TK"],
         "category": "airline",
         "website": "https://www.turkishairlines.com/",
@@ -206,6 +227,7 @@ AIRLINES = [
         "cn_name": "香港快运航空公司",
         "iata_code": "UO",
         "icao_code": "HKE",
+        "belong": "HK(香港)",
         "keywords": ["HKE", "香港快运航空公司", "UO"],
         "category": "airline",
         "website": "https://www.hkexpress.com/",
@@ -218,6 +240,7 @@ AIRLINES = [
         "cn_name": "越捷航空",
         "iata_code": "VJ",
         "icao_code": "VJC",
+        "belong": "VN(越南)",
         "keywords": ["VJC", "越捷航空", "VJ"],
         "category": "airline",
         "website": "https://www.vietjetair.com/",
@@ -230,6 +253,7 @@ AIRLINES = [
         "cn_name": "越南航空",
         "iata_code": "VN",
         "icao_code": "HVN",
+        "belong": "VN(越南)",
         "keywords": ["HVN", "越南航空", "VN"],
         "category": "airline",
         "website": "https://www.vietnamairlines.com/",
@@ -242,6 +266,7 @@ AIRLINES = [
         "cn_name": "维兹航空",
         "iata_code": "W6",
         "icao_code": "WZZ",
+        "belong": "US(美国)",
         "keywords": ["WZZ", "维兹航空", "W6"],
         "category": "airline",
         "website": "https://wizzair.com/",
@@ -254,155 +279,109 @@ AIRLINES = [
         "cn_name": "墨西哥 VOLARIS",
         "iata_code": "Y4",
         "icao_code": "VOI",
+        "belong": "MX(墨西哥)",
         "keywords": ["VOI", "墨西哥 VOLARIS", "Y4"],
         "category": "airline",
         "website": "https://www.volaris.com/",
     },
 ]
 
-AIRLINE_ALIASES = {
-    "CAL": ["中国航空", "华航", "china airlines"],
-    "VJC": ["vietjet", "vietjet air", "vj air"],
-    "CPA": ["cathay", "国泰"],
-    "EVA": ["eva air", "长荣"],
-}
 
-NOISE_TERMS = {
-    "帮我",
-    "执行",
-    "帮我执行",
-    "优惠搜索",
-    "搜索优惠",
-    "优惠",
-    "搜索",
-    "查优惠",
-    "查一下",
-    "查下",
-    "查询",
-    "帮忙",
-    "一下",
-    "的",
-}
+def fetch_from_api():
+    """从接口获取航司数据"""
+    try:
+        with urllib.request.urlopen(AIRLINE_LIST_URL, timeout=10) as response:
+            charset = response.headers.get_content_charset() or "utf-8"
+            content = response.read().decode(charset, errors="replace")
+        result = json.loads(content)
+        if isinstance(result, list):
+            return result
+        return None
+    except Exception:
+        return None
 
 
-def normalize_text(value):
-    return str(value or "").strip().lower()
+def get_airlines():
+    """获取航司列表（优先接口，失败则用静态数据兜底）"""
+    airlines = fetch_from_api()
+    if airlines:
+        return airlines
+    return AIRLINES
 
 
-def normalize_term(term):
-    value = normalize_text(term)
-    value = re.sub(r"[`'\"""''""()]+", "", value)
-    return value.strip()
+def get_airline_by_code(code: str):
+    """按二字码/三字码查询航司"""
+    airlines = get_airlines()
+    for a in airlines:
+        if a.get("iata_code") == code or a.get("icao_code") == code:
+            return a
+    return None
 
 
-def split_terms(raw_value):
-    if raw_value is None:
-        return []
-    if isinstance(raw_value, list):
-        values = raw_value
-    else:
-        values = [raw_value]
-    result = []
-    for value in values:
-        text = str(value or "").strip()
-        if not text:
-            continue
-        parts = re.split(r"[,，、/\s]+", text)
-        for part in parts:
-            normalized = normalize_term(part)
-            if normalized:
-                result.append(normalized)
-            # 从自然语言里额外抽取英文代码和中文短语
-            embedded_parts = re.findall(r"[a-zA-Z0-9]{2,}|[\u4e00-\u9fff]{2,}", part)
-            for embedded in embedded_parts:
-                normalized_embedded = normalize_term(embedded)
-                if normalized_embedded:
-                    result.append(normalized_embedded)
-    return result
+def get_airline_by_name(name: str):
+    """按名称查询航司"""
+    airlines = get_airlines()
+    name = name.lower()
+    for a in airlines:
+        if (name in a.get("cn_name", "").lower() or
+            name in a.get("name", "").lower()):
+            return a
+    return None
 
 
-def cleanup_terms(terms):
-    cleaned = []
-    seen = set()
-    for term in terms:
-        normalized = normalize_term(term)
-        if not normalized or normalized in NOISE_TERMS:
-            continue
-        # 去掉句尾动作词，让"中国航空的优惠搜索"变成"中国航空"
-        normalized = re.sub(r"(的)?(优惠 | 搜索 | 优惠搜索 | 促销 | 折扣)+$", "", normalized).strip()
-        normalized = re.sub(r"^(帮我 | 请 | 执行 | 查询 | 查一下 | 查下)+", "", normalized).strip()
-        if not normalized or normalized in NOISE_TERMS:
-            continue
-        if normalized in seen:
-            continue
-        seen.add(normalized)
-        cleaned.append(normalized)
-    return cleaned
+def search_airlines(keyword: str):
+    """按关键词搜索航司"""
+    airlines = get_airlines()
+    keyword = keyword.lower()
+    results = []
+    for a in airlines:
+        if (keyword in a.get("cn_name", "").lower() or
+            keyword in a.get("name", "").lower() or
+            keyword in a.get("iata_code", "").lower() or
+            keyword in a.get("icao_code", "").lower()):
+            results.append(a)
+    return results
 
 
-def collect_match_terms(params):
-    candidate_keys = [
-        "air_params",
-        "airline",
-        "airlines",
-        "keyword",
-        "keywords",
-        "query",
-        "text",
-        "content",
-        "name",
-        "names",
-    ]
-    terms = []
-    for key in candidate_keys:
-        terms.extend(split_terms(params.get(key)))
-    deduped = []
-    seen = set()
-    for term in terms:
-        if term in seen:
-            continue
-        seen.add(term)
-        deduped.append(term)
-    return cleanup_terms(deduped)
+def main(params: dict = None):
+    """
+    入口函数：
+    - params=None → 返回所有航司
+    - params={query} → 搜索匹配的航司
+    """
+    if params is None:
+        return get_airlines()
+
+    # 搜索逻辑
+    keyword = params.get("keyword") or params.get("name")
+    if keyword:
+        results = search_airlines(str(keyword))
+        return {
+            "success": True,
+            "matched": len(results) > 0,
+            "total": len(results),
+            "data": results,
+        }
+
+    return get_airlines()
 
 
-def build_search_tokens(airline):
-    tokens = {
-        normalize_text(airline.get("id")),
-        normalize_text(airline.get("name")),
-        normalize_text(airline.get("cn_name")),
-        normalize_text(airline.get("website")),
-    }
-    for keyword in airline.get("keywords") or []:
-        tokens.add(normalize_text(keyword))
-    for alias in AIRLINE_ALIASES.get(airline.get("name"), []):
-        tokens.add(normalize_text(alias))
-    return {token for token in tokens if token}
+if __name__ == "__main__":
+    # 测试
+    print("=== 测试航司数据获取 ===")
 
+    # 测试 1: 获取全部
+    airlines = get_airlines()
+    print(f"\n1. 获取全部航司：{len(airlines)} 家")
 
-def is_match(airline, terms):
-    if not terms:
-        return False
-    tokens = build_search_tokens(airline)
-    for term in terms:
-        for token in tokens:
-            if term == token or term in token or token in term:
-                return True
-    return False
+    # 测试 2: 按代码查询
+    airline = get_airline_by_code("VN")
+    print(f"\n2. 查询 VN: {airline}")
 
+    # 测试 3: 按名称查询
+    airline = get_airline_by_name("越南")
+    print(f"\n3. 查询'越南': {airline}")
 
-def main(params: dict):
-    """入口函数，用于航司匹配搜索
-    函数的返回值将作为结果填入字段中"""
-    params = params or {}
-    match_terms = collect_match_terms(params)
-    matched_airlines = [airline for airline in AIRLINES if is_match(airline, match_terms)]
-    data = matched_airlines if matched_airlines else AIRLINES
-
-    return {
-        "success": True,
-        "matched": bool(matched_airlines),
-        "match_terms": match_terms,
-        "total": len(data),
-        "data": data,
-    }
+    # 测试 4: 搜索
+    results = search_airlines("航空")
+    print(f"\n4. 搜索'航空': {len(results)} 条结果")
