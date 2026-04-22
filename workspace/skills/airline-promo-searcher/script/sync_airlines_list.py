@@ -56,6 +56,8 @@ def build_airline_item(raw_item: dict, index: int):
         "cheapboat": cheapboat,
         "name": name,
         "cn_name": cn_name or name,
+        "iata_code": code,  # 二字码
+        "icao_code": aircode,  # 三字码
         "keywords": keywords,
         "category": "airline",
         "website": website,
