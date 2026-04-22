@@ -25,10 +25,10 @@ metadata:
 ## 核心规则
 1. 检索仅使用 `WebSearch`
 2. 航司数据获取：`python script/fetch_airlines.py`（接口 + 静态兜底）
-3. 优惠数据保存：`python script/save_promos.py`（读取 promo_data.md → POST 到后端）
+3. 优惠数据保存：`python script/save_promos.py`（写入 promo_data.json → POST 到后端）
 4. **不使用子代理**:当前代理直接串行处理所有目标。
-5. 每个目标检索完成后立即写入 `promo_data.md`,采用"逐条追加"策略。
-6. 任务开始先清空 `promo_data.md` 的优惠记录表。
+5. 每个目标检索完成后立即写入 `promo_data.json`,采用"逐条追加"策略。
+6. 任务开始先清空 `promo_data.json` 的优惠记录。
 7. 每完成 3-5 个目标输出一次进度。
 
 ## 数据格式规范
@@ -64,30 +64,42 @@ metadata:
 6. 同域名相似结果去重。
 
 ## 写入规则
-1. 写入文件：`workspace/skills/airline-promo-searcher/references/promo_data.md`。
-2. 采用"逐条追加"策略，每个目标完成后立即写入表格。
-3. 维护"已写入目标集合",同一目标只写一次。
-4. 若任务中断，保留已写内容，恢复可通过检查已写入目标跳过。
+1. 写入文件：`workspace/skills/airline-promo-searcher/references/promo_data.json`。
+2. 采用"逐条追加"策略，每个目标完成后立即写入 JSON 文件。
+3. 维护"已写入 URL+ 优惠类型集合",同一优惠不重复写入。
+4. 若任务中断，保留已写内容，恢复可通过检查已写入记录跳过。
 5. **belong 字段**：写入时需从航司数据中获取对应的国家/地区二字码
+6. **文件格式**：标准 JSON 格式，包含 `updated_at` 和 `promos` 数组
 
 ## 详情模板
-`## 记录模板`
-`### 目标名称 (中文名 / 英文名)`
-`| 航司 | 二字码 | 三字码 | 优惠类型 | 优惠内容 | 有效期 | 来源链接 |`
-`|----------|----------|----------|----------|----------|--------|----------|`
-`| 示例 | BR | EVA | 限时折扣 | 机票 8 折起 | 2026-04-01 至 2026-06-30 | https://example.com |`
+
+### 目标名称 (中文名 / 英文名)
+
+JSON 记录格式：
+```json
+{
+  "airline_name": "航司名称",
+  "airline_iata_code": "BR",
+  "airline_icao_code": "EVA",
+  "belong": "TW",
+  "promo_type": "限时折扣",
+  "promo_content": "机票 8 折起",
+  "promo_start_date": "2026-04-01",
+  "promo_end_date": "2026-06-30",
+  "source_url": "https://example.com"
+}
+```
 
 ## 最终回传
 完成任务后:
 1. 输出汇总信息（已完成数、有效优惠数）
 2. 在回复末尾添加钉钉文件标记自动上传并发送:
 ```
-[DINGTALK_FILE]{"path":"workspace/skills/airline-promo-searcher/references/promo_data.md","fileName":"airline_promo_data.md","fileType":"md"}[/DINGTALK_FILE]
+[DINGTALK_FILE]{"path":"workspace/skills/airline-promo-searcher/references/promo_data.json","fileName":"airline_promo_data.json","fileType":"json"}[/DINGTALK_FILE]
 ```
 
 ## 参考资料
 - `script/fetch_airlines.py` - 获取航司数据（接口 + 静态兜底）
-- `script/save_promos.py` - 保存优惠数据到后端（自动规范化 belong 字段）
+- `script/save_promos.py` - 保存优惠数据到后端（写入 JSON + POST）
 - `script/test_upload.py` - 测试上传脚本（读取 promo_import_example.json）
-- `references/promo_data.md` - 优惠数据存储
-- `references/promo_import_example.json` - 批量导入 JSON 格式示例
+- `references/promo_data.json` - 优惠数据存储（JSON 格式）

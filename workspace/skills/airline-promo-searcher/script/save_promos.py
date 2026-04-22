@@ -1,6 +1,5 @@
 """保存优惠数据模块
-- 读取 promo_data.md
-- 解析表格中的优惠记录
+- 读取 promo_data.json
 - POST 到后端接口
 """
 
@@ -8,10 +7,14 @@ import json
 import re
 import urllib.parse
 import urllib.request
+from datetime import datetime
 from pathlib import Path
 
 # 优惠数据保存接口
 SAVE_DISCOUNTS_URL = "http://192.168.1.173:7001/servlet/ServiceServlet?method=saveOrUpdateAiDiscounts"
+
+# JSON 数据文件路径
+PROMO_JSON_FILE = Path(__file__).parent.parent / "references" / "promo_data.json"
 
 
 def normalize_belong(belong: str) -> str:
@@ -48,96 +51,71 @@ def build_belong_map() -> dict:
         return {}
 
 
-def parse_promos_from_file(file_path: Path, belong_map: dict = None) -> list:
-    """从 promo_data.md 解析优惠数据"""
+def load_promos_from_json(file_path: Path) -> list:
+    """从 promo_data.json 加载优惠数据"""
     if not file_path.exists():
         print(f"文件不存在：{file_path}")
         return []
 
-    # 如果没有提供 belong_map，尝试从航司数据构建
-    if belong_map is None:
-        belong_map = build_belong_map()
-
-    with open(file_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    promos = []
-    lines = content.split("\n")
-    in_table = False
-
-    for line in lines:
-        line = line.strip()
-        if not line:
-            continue
-
-        # 检测表格开始
-        if line.startswith("| 航司 |") and "二字码" in line:
-            in_table = True
-            continue
-
-        # 跳过表头分隔线
-        if in_table and line.startswith("|---"):
-            continue
-
-        # 解析数据行
-        if in_table and line.startswith("|"):
-            parts = [p.strip() for p in line.split("|")[1:-1]]
-            if len(parts) >= 6 and parts[0] not in ["航司", "示例"]:
-                # 解析优惠记录（不再检查状态列）
-                promo = parse_promo_row(parts, belong_map)
-                if promo:
-                    promos.append(promo)
-
-        # 检测表格结束
-        if in_table and not line.startswith("|"):
-            break
-
-    return promos
-
-
-def parse_promo_row(parts: list, belong_map: dict = None) -> dict | None:
-    """解析表格行为优惠对象"""
     try:
-        airline_name = parts[0] if len(parts) > 0 else ""
-        iata_code = parts[1] if len(parts) > 1 else ""
-        icao_code = parts[2] if len(parts) > 2 else ""
-        promo_type = parts[3] if len(parts) > 3 else ""
-        promo_content = parts[4] if len(parts) > 4 else ""
-        validity = parts[5] if len(parts) > 5 else ""
-        source_url = parts[6] if len(parts) > 6 else ""
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("promos", [])
+    except json.JSONDecodeError as e:
+        print(f"JSON 解析失败：{e}")
+        return []
 
-        if not airline_name or not promo_content:
-            return None
 
-        # 从 belong_map 中获取规范化的 belong 字段
-        belong = belong_map.get(iata_code, "") if belong_map else ""
+def save_promo_to_json(promo: dict, file_path: Path = None) -> bool:
+    """
+    添加单条优惠记录到 JSON 文件
+    如果已存在相同记录（source_url + promo_type 相同），则跳过
+    """
+    if file_path is None:
+        file_path = PROMO_JSON_FILE
 
-        # 解析有效期
-        start_date = None
-        end_date = None
+    # 加载现有数据
+    if file_path.exists():
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except json.JSONDecodeError:
+            data = {"updated_at": None, "promos": []}
+    else:
+        data = {"updated_at": None, "promos": []}
 
-        if "至" in validity:
-            dates = validity.split("至")
-            if len(dates) == 2:
-                start_date = dates[0].strip()
-                end_date = dates[1].strip()
-        elif validity and validity not in ["待确认", "限时", "-", ""]:
-            end_date = validity
+    # 检查是否已存在（source_url + promo_type 相同视为重复）
+    for existing in data.get("promos", []):
+        if (existing.get("source_url") == promo.get("source_url") and
+                existing.get("promo_type") == promo.get("promo_type")):
+            print(f"跳过重复记录：{promo.get('airline_name')} - {promo.get('promo_type')}")
+            return False
 
-        return {
-            "airline_name": airline_name,
-            "airline_iata_code": iata_code,
-            "airline_icao_code": icao_code,
-            "belong": belong,
-            "promo_type": promo_type,
-            "promo_content": promo_content,
-            "promo_start_date": start_date,
-            "promo_end_date": end_date,
-            "source_url": source_url,
-        }
-    except Exception as e:
-        print(f"解析行失败：{e}")
-        return None
+    # 添加新记录
+    data["promos"].append(promo)
+    data["updated_at"] = datetime.now().astimezone().isoformat()
+
+    # 写回文件
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+    return True
+
+
+def init_promo_file(file_path: Path = None) -> bool:
+    """初始化/清空 JSON 文件"""
+    if file_path is None:
+        file_path = PROMO_JSON_FILE
+
+    data = {
+        "updated_at": datetime.now().astimezone().isoformat(),
+        "promos": []
+    }
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+    return True
 
 
 def sync_to_backend(promos: list) -> bool:
@@ -179,26 +157,67 @@ def sync_to_backend(promos: list) -> bool:
         return False
 
 
+def create_promo_entry(
+    airline_name: str,
+    iata_code: str,
+    icao_code: str,
+    promo_type: str,
+    promo_content: str,
+    source_url: str,
+    validity: str = None,
+    belong_map: dict = None
+) -> dict:
+    """
+    创建单条优惠记录对象
+    """
+    # 解析有效期
+    start_date = None
+    end_date = None
+
+    if validity:
+        if "至" in validity:
+            dates = validity.split("至")
+            if len(dates) == 2:
+                start_date = dates[0].strip()
+                end_date = dates[1].strip()
+        elif validity not in ["待确认", "限时", "-", ""]:
+            end_date = validity
+
+    # 获取 belong 字段
+    belong = belong_map.get(iata_code, "") if belong_map else ""
+
+    return {
+        "airline_name": airline_name,
+        "airline_iata_code": iata_code,
+        "airline_icao_code": icao_code,
+        "belong": belong,
+        "promo_type": promo_type,
+        "promo_content": promo_content,
+        "promo_start_date": start_date,
+        "promo_end_date": end_date,
+        "source_url": source_url,
+    }
+
+
 def main():
     """主函数"""
-    promo_file = Path(__file__).parent.parent / "references" / "promo_data.md"
-
     print("=== 航司优惠数据同步 ===")
-    print(f"读取文件：{promo_file}")
+    print(f"读取文件：{PROMO_JSON_FILE}")
 
-    # 解析优惠数据
-    promos = parse_promos_from_file(promo_file)
+    # 加载优惠数据
+    promos = load_promos_from_json(PROMO_JSON_FILE)
 
     if not promos:
         print("未找到优惠记录")
         return
 
-    print(f"解析到 {len(promos)} 条优惠记录")
+    print(f"加载到 {len(promos)} 条优惠记录")
 
     # 显示预览
     print("\n优惠预览:")
     for i, promo in enumerate(promos[:3]):
-        print(f"  {i+1}. {promo['airline_name']} ({promo['airline_iata_code']}): {promo['promo_content'][:40]}...")
+        content = promo.get('promo_content', '')[:40]
+        print(f"  {i+1}. {promo['airline_name']} ({promo['airline_iata_code']}): {content}...")
 
     if len(promos) > 3:
         print(f"  ... 还有 {len(promos) - 3} 条")
