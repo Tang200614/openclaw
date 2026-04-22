@@ -25,9 +25,12 @@ metadata:
 ## 核心规则
 1. 检索仅使用 `WebSearch`
 2. 航司数据获取：`python script/fetch_airlines.py`（接口 + 静态兜底）
-3. 优惠数据保存：`python script/save_promos.py`（写入 promo_data.json → POST 到后端）
+3. 优惠数据保存：
+   - 任务开始：调用 `save_promos.init_promo_file()` 初始化文件
+   - 每条优惠：调用 `save_promos.save_promo_to_json()` 逐条写入
+   - 任务结束：`python script/save_promos.py` 批量 POST 到后端
 4. **不使用子代理**:当前代理直接串行处理所有目标。
-5. 每个目标检索完成后立即写入 `promo_data.json`,采用"逐条追加"策略。
+5. 每个目标检索完成后立即写入 `promo_data.json`。
 6. 任务开始先清空 `promo_data.json` 的优惠记录。
 7. 每完成 3-5 个目标输出一次进度。
 
@@ -64,12 +67,58 @@ metadata:
 6. 同域名相似结果去重。
 
 ## 写入规则
-1. 写入文件：`workspace/skills/airline-promo-searcher/references/promo_data.json`。
-2. 采用"逐条追加"策略，每个目标完成后立即写入 JSON 文件。
-3. 维护"已写入 URL+ 优惠类型集合",同一优惠不重复写入。
-4. 若任务中断，保留已写内容，恢复可通过检查已写入记录跳过。
-5. **belong 字段**：写入时需从航司数据中获取对应的国家/地区二字码
-6. **文件格式**：标准 JSON 格式，包含 `updated_at` 和 `promos` 数组
+
+### 初始化文件
+任务开始时调用：
+```python
+from save_promos import init_promo_file
+init_promo_file()  # 清空并初始化 promo_data.json
+```
+
+### 逐条写入
+每个目标检索完成后，调用：
+```python
+from save_promos import save_promo_to_json, create_promo_entry
+
+# 方式一：直接传入优惠字典
+save_promo_to_json({
+    "airline_name": "航司名称",
+    "airline_iata_code": "二字码",
+    "airline_icao_code": "三字码",
+    "belong": "TW",
+    "promo_type": "优惠类型",
+    "promo_content": "优惠内容详情",
+    "promo_start_date": "2026-04-01",
+    "promo_end_date": "2026-06-30",
+    "source_url": "https://..."
+})
+
+# 方式二：使用 create_promo_entry 创建记录
+promo = create_promo_entry(
+    airline_name="航司名称",
+    iata_code="二字码",
+    icao_code="三字码",
+    promo_type="优惠类型",
+    promo_content="优惠内容详情",
+    source_url="https://...",
+    validity="2026-04-01 至 2026-06-30"  # 可选
+)
+save_promo_to_json(promo)
+```
+
+### 批量上传
+任务结束后调用：
+```bash
+python script/save_promos.py
+```
+
+### 去重规则
+- 维护"已写入 URL+ 优惠类型集合",同一优惠不重复写入
+- `save_promo_to_json()` 会自动检查重复，重复记录返回 False
+
+### belong 字段
+- 仅使用国家/地区二字码，如 `CN`、`US`、`QA`、`TW`
+- 从 `fetch_airlines.py` 的航司数据中自动获取
 
 ## 详情模板
 
@@ -100,6 +149,7 @@ JSON 记录格式：
 
 ## 参考资料
 - `script/fetch_airlines.py` - 获取航司数据（接口 + 静态兜底）
-- `script/save_promos.py` - 保存优惠数据到后端（写入 JSON + POST）
+- `script/save_promos.py` - 写入优惠数据到 JSON 文件 + 批量同步到后端
 - `script/test_upload.py` - 测试上传脚本（读取 promo_import_example.json）
 - `references/promo_data.json` - 优惠数据存储（JSON 格式）
+- `references/promo_import_example.json` - 批量导入 JSON 格式示例
