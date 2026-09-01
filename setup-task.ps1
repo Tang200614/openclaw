@@ -1,39 +1,94 @@
-# OpenClaw Gateway 开机自启任务配置脚本
-$TaskName = 'OpenClaw Gateway'
-$VbsPath = 'C:\Users\Administrator\.openclaw\start-openclaw.vbs'
+#requires -RunAsAdministrator
 
-# 删除已存在的任务
-Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false -ErrorAction SilentlyContinue
+[CmdletBinding()]
+param(
+    [string]$TaskName = 'OpenClaw Gateway',
+    [switch]$NoStart
+)
 
-# 创建任务操作
-$Action = New-ScheduledTaskAction -Execute 'wscript.exe' -Argument '"$VbsPath"'
+$ErrorActionPreference = 'Stop'
 
-# 创建触发器（系统启动时）
-$Trigger = New-ScheduledTaskTrigger -AtStartup
+$OpenClawHome = $PSScriptRoot
+$RunnerPath = Join-Path $OpenClawHome 'openclaw-task-runner.cmd'
 
-# 创建任务设置
-$Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+if (-not (Test-Path -LiteralPath $RunnerPath -PathType Leaf)) {
+    throw "Task runner not found: $RunnerPath"
+}
 
-# 使用 SYSTEM 账户运行
-$Principal = New-ScheduledTaskPrincipal -UserId 'SYSTEM' -LogonType ServiceAccount -RunLevel Highest
+Write-Host "[INFO] Installing scheduled task: $TaskName"
+Write-Host "[INFO] OpenClaw home: $OpenClawHome"
 
-# 注册任务
-Register-ScheduledTask -TaskName $TaskName -Action $Action -Trigger $Trigger -Settings $Settings -Principal $Principal -Force
+# Stop and remove the previous definition. The old task launched a short-lived
+# VBS process asynchronously, so Task Scheduler could not supervise the actual
+# gateway process after the VBS process exited.
+$ExistingTask = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
+if ($null -ne $ExistingTask) {
+    Stop-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
+    Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false
+}
 
-Write-Host '[OK] OpenClaw Gateway 计划任务创建成功！'
+# Clean up only stale OpenClaw gateway Node processes. Never terminate every
+# node.exe process because other development tools may be using Node.js.
+try {
+    Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" |
+        Where-Object {
+            $_.CommandLine -and
+            $_.CommandLine -match 'openclaw[\\/]+dist[\\/]+index\.js' -and
+            $_.CommandLine -match '(?<![A-Za-z])gateway(?![A-Za-z])'
+        } |
+        ForEach-Object {
+            Write-Host "[INFO] Stopping stale gateway process PID $($_.ProcessId)"
+            Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue
+        }
+}
+catch {
+    Write-Warning "Could not inspect stale gateway processes: $($_.Exception.Message)"
+}
+
+$CmdExe = Join-Path $env:SystemRoot 'System32\cmd.exe'
+$ActionArguments = '/d /c ""{0}""' -f $RunnerPath
+$Action = New-ScheduledTaskAction -Execute $CmdExe -Argument $ActionArguments -WorkingDirectory $OpenClawHome
+
+$BootTrigger = New-ScheduledTaskTrigger -AtStartup
+$BootTrigger.Delay = 'PT30S'
+
+$Settings = New-ScheduledTaskSettingsSet `
+    -AllowStartIfOnBatteries `
+    -DontStopIfGoingOnBatteries `
+    -StartWhenAvailable `
+    -RestartCount 999 `
+    -RestartInterval (New-TimeSpan -Minutes 1) `
+    -ExecutionTimeLimit (New-TimeSpan -Seconds 0) `
+    -MultipleInstances IgnoreNew
+
+$Principal = New-ScheduledTaskPrincipal `
+    -UserId 'SYSTEM' `
+    -LogonType ServiceAccount `
+    -RunLevel Highest
+
+Register-ScheduledTask `
+    -TaskName $TaskName `
+    -Description 'OpenClaw Gateway with automatic restart and Feishu connection recovery' `
+    -Action $Action `
+    -Trigger $BootTrigger `
+    -Settings $Settings `
+    -Principal $Principal `
+    -Force | Out-Null
+
+if (-not $NoStart) {
+    Start-ScheduledTask -TaskName $TaskName
+    Start-Sleep -Seconds 3
+}
+
+$Task = Get-ScheduledTask -TaskName $TaskName
+$TaskInfo = Get-ScheduledTaskInfo -TaskName $TaskName
+
 Write-Host ''
-Write-Host '任务信息:'
-Write-Host "  名称: $TaskName"
-Write-Host '  触发器: 系统启动时'
-Write-Host "  执行: $VbsPath"
-Write-Host '  运行身份: SYSTEM'
-Write-Host ''
-Write-Host '网关配置:'
-Write-Host '  端口: 18789'
-Write-Host '  Web UI: http://localhost:18789'
-Write-Host ''
-Write-Host '可用操作:'
-Write-Host "  立即运行: Start-ScheduledTask -TaskName '$TaskName'"
-Write-Host "  停止任务: Stop-ScheduledTask -TaskName '$TaskName'"
-Write-Host "  删除任务: Unregister-ScheduledTask -TaskName '$TaskName' -Confirm:\$false"
-Write-Host "  查看状态: Get-ScheduledTask -TaskName '$TaskName'"
+Write-Host '[OK] OpenClaw Gateway task installed.' -ForegroundColor Green
+Write-Host "  State:        $($Task.State)"
+Write-Host "  Last result:  $($TaskInfo.LastTaskResult)"
+Write-Host "  Runner:       $RunnerPath"
+Write-Host '  Trigger:      system startup, delayed 30 seconds'
+Write-Host '  Recovery:     restart every 1 minute after failure (up to 999 times)'
+Write-Host '  Run account:  SYSTEM'
+Write-Host '  Gateway port: 18789'

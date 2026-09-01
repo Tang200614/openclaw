@@ -14,6 +14,7 @@ if "%~1"=="debug" goto :debug
 if "%~1"=="clean" goto :clean
 if "%~1"=="clean-subagents" goto :clean_subagents
 if "%~1"=="restart" goto :restart
+if "%~1"=="repair-feishu" goto :repair_feishu
 if "%~1"=="help" goto :help
 goto :menu
 
@@ -21,14 +22,15 @@ goto :menu
 echo 用法: openclaw-dev.cmd [命令]
 echo.
 echo 可用命令:
-echo   reset          - 重置会话 (删除所有 jsonl 会话文件)
-echo   status         - 查看当前 OpenClaw 状态
-echo   logs           - 查看最近日志
-echo   debug          - 启动调试模式
-echo   clean          - 清理临时文件
+echo   reset           - 重置会话 (删除所有 jsonl 会话文件)
+echo   status          - 查看当前 OpenClaw 状态
+echo   logs            - 查看最近日志
+echo   debug           - 启动调试模式
+echo   clean           - 清理临时文件
 echo   clean-subagents - 清理 subagent worktree 分支 [!重要!]
-echo   restart        - 重启 OpenClaw 服务
-echo   help           - 显示帮助信息
+echo   restart         - 安全重启 OpenClaw Gateway 计划任务
+echo   repair-feishu   - 修复飞书长连接与开机自启
+echo   help            - 显示帮助信息
 echo.
 goto :eof
 
@@ -46,13 +48,16 @@ goto :eof
 :status
 echo [INFO] OpenClaw 状态检查...
 echo.
+echo --- Gateway 计划任务 ---
+schtasks /query /tn "OpenClaw Gateway" /v /fo list 2>nul
+echo.
 echo --- Git 分支 ---
 cd /d %USERPROFILE%\.openclaw
 git branch -a | findstr "worktree-agent"
 echo.
 echo --- Subagent Worktree 分支数量 ---
 cd /d %USERPROFILE%\.openclaw
-for /f %%a in ('git branch -a ^| findstr /c:"worktree-agent" ^| wc -l') do echo 当前 worktree-agent 分支: %%a
+for /f %%a in ('git branch -a ^| findstr /c:"worktree-agent" ^| find /c /v ""') do echo 当前 worktree-agent 分支: %%a
 echo.
 echo --- 会话文件 ---
 if exist "%USERPROFILE%\.claude\projects\C--Users-Administrator--openclaw\" (
@@ -63,13 +68,15 @@ if exist "%USERPROFILE%\.claude\projects\C--Users-Administrator--openclaw\" (
 echo.
 echo --- 最近修改的 Subagent ---
 cd /d %USERPROFILE%\.openclaw
-git branch -a --sort=-committerdate | findstr "worktree-agent" | head -5
+powershell.exe -NoProfile -Command "git branch -a --sort=-committerdate ^| Select-String 'worktree-agent' ^| Select-Object -First 5"
 goto :eof
 
 :logs
 echo [INFO] 查看 OpenClaw 日志...
-if exist "%USERPROFILE%\.openclaw\logs\" (
-    dir /b /o-d "%USERPROFILE%\.openclaw\logs\" | head -10
+if exist "%USERPROFILE%\.openclaw\logs\gateway-supervisor.log" (
+    powershell.exe -NoProfile -Command "Get-Content -LiteralPath '%USERPROFILE%\.openclaw\logs\gateway-supervisor.log' -Tail 100"
+) else if exist "%USERPROFILE%\.openclaw\logs\" (
+    powershell.exe -NoProfile -Command "Get-ChildItem -LiteralPath '%USERPROFILE%\.openclaw\logs' ^| Sort-Object LastWriteTime -Descending ^| Select-Object -First 10 Name,LastWriteTime"
 ) else (
     echo [WARN] 日志目录不存在
 )
@@ -88,13 +95,11 @@ goto :eof
 :clean
 echo [INFO] 开始清理临时文件...
 
-:: 清理可能残留的临时文件
 if exist "%TEMP%\openclaw-*" (
     rmdir /s /q "%TEMP%\openclaw-*" 2>nul
     echo [OK] 已清理临时目录
 )
 
-:: 清理空的 worktree 分支（没有对应 worktree 目录的分支）
 cd /d %USERPROFILE%\.openclaw
 echo [INFO] 检查孤立的 worktree 分支...
 for /f "tokens=*" %%b in ('git branch -a ^| findstr /c:"worktree-agent"') do (
@@ -113,7 +118,6 @@ echo.
 
 cd /d %USERPROFILE%\.openclaw
 
-:: 列出所有 worktree-agent 分支
 echo [INFO] 当前存在的 worktree-agent 分支:
 git branch -a | findstr /c:"worktree-agent" | findstr /v /c:"grep"
 if errorlevel 1 (
@@ -134,7 +138,6 @@ if /i not "%confirm%"=="yes" (
 echo.
 echo [INFO] 正在删除 worktree-agent 分支...
 
-:: 删除本地 worktree-agent 分支
 for /f "tokens=*" %%b in ('git branch ^| findstr /c:"worktree-agent"') do (
     set "branch=%%b"
     setlocal enabledelayedexpansion
@@ -144,7 +147,6 @@ for /f "tokens=*" %%b in ('git branch ^| findstr /c:"worktree-agent"') do (
     endlocal
 )
 
-:: 删除 remote worktree-agent 分支（如果有）
 for /f "tokens=*" %%b in ('git branch -r ^| findstr /c:"worktree-agent"') do (
     set "branch=%%b"
     setlocal enabledelayedexpansion
@@ -162,27 +164,47 @@ git branch -a | findstr /c:"worktree-agent" | findstr /v /c:"grep" || echo 无
 goto :eof
 
 :restart
-echo [INFO] 重启 OpenClaw 服务...
-echo [INFO] 停止服务...
-taskkill /f /im openclaw.exe 2>nul
-taskkill /f /im node.exe 2>nul
+echo [INFO] 安全重启 OpenClaw Gateway...
+schtasks /query /tn "OpenClaw Gateway" >nul 2>&1
+if errorlevel 1 (
+    echo [ERROR] 未找到计划任务 OpenClaw Gateway。
+    echo [TIP] 请先以管理员身份运行 install-task.cmd。
+    exit /b 1
+)
+schtasks /end /tn "OpenClaw Gateway" >nul 2>&1
 timeout /t 2 /nobreak >nul
-echo [INFO] 启动服务...
-start /b openclaw.exe >nul 2>&1
-echo [OK] OpenClaw 已重启
+schtasks /run /tn "OpenClaw Gateway" >nul 2>&1
+if errorlevel 1 (
+    echo [ERROR] Gateway 启动失败。
+    exit /b 1
+)
+echo [OK] OpenClaw Gateway 已重启；未终止其他 Node.js 进程。
 goto :eof
+
+:repair_feishu
+echo [INFO] 修复飞书长连接与开机自启...
+net session >nul 2>&1
+if errorlevel 1 (
+    echo [ERROR] 此命令需要管理员权限。
+    echo [TIP] 请以管理员身份打开终端后重新执行。
+    exit /b 1
+)
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0repair-feishu-autostart.ps1"
+exit /b %ERRORLEVEL%
 
 :help
 echo OpenClaw 开发调试工具 - 帮助信息
 echo.
 echo 主要功能:
 echo   1. 重置会话: 删除所有 jsonl 会话文件，用于清理上下文
-echo   2. 查看状态: 显示当前 subagent、会话等状态
-echo   3. 清理 Subagent: 删除所有 worktree-agent 分支 [!重要功能!]
-echo   4. 调试模式: 设置调试环境变量
+echo   2. 查看状态: 显示 Gateway、subagent、会话等状态
+echo   3. 清理 Subagent: 删除所有 worktree-agent 分支
+echo   4. 安全重启: 只重启 OpenClaw Gateway 计划任务
+echo   5. 飞书修复: 安装心跳自愈补丁并重建开机任务
 echo.
 echo 使用示例:
-echo   openclaw-dev.cmd reset
-echo   openclaw-dev.cmd clean-subagents
+echo   openclaw-dev.cmd repair-feishu
+echo   openclaw-dev.cmd restart
 echo   openclaw-dev.cmd status
+echo   openclaw-dev.cmd logs
 goto :eof
