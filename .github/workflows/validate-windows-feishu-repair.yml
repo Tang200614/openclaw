@@ -1,0 +1,90 @@
+name: Validate Windows Feishu repair
+
+on:
+  pull_request:
+    paths:
+      - "*.ps1"
+      - "*.cmd"
+      - "*.vbs"
+      - "*.cjs"
+      - ".github/workflows/validate-windows-feishu-repair.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Parse PowerShell scripts
+        shell: powershell
+        run: |
+          $failed = $false
+          foreach ($script in @('setup-task.ps1', 'repair-feishu-autostart.ps1')) {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              (Resolve-Path $script),
+              [ref]$tokens,
+              [ref]$errors
+            ) | Out-Null
+
+            if ($errors.Count -gt 0) {
+              $failed = $true
+              Write-Host "Parser errors in $script" -ForegroundColor Red
+              $errors | ForEach-Object { Write-Host $_.Message -ForegroundColor Red }
+            }
+          }
+
+          if ($failed) { exit 1 }
+
+      - name: Check Node preload syntax
+        shell: powershell
+        run: node --check .\feishu-ws-liveness-preload.cjs
+
+      - name: Test WebSocket timeout injection
+        shell: powershell
+        run: |
+          $testHome = Join-Path $env:RUNNER_TEMP 'openclaw-feishu-preload-test'
+          $plugin = Join-Path $testHome '.openclaw\extensions\openclaw-lark'
+          $sdk = Join-Path $plugin 'node_modules\@larksuiteoapi\node-sdk'
+          New-Item -ItemType Directory -Path $sdk -Force | Out-Null
+
+          '{"name":"mock-plugin","version":"1.0.0"}' |
+            Set-Content -LiteralPath (Join-Path $plugin 'package.json') -Encoding UTF8
+          '{"name":"@larksuiteoapi/node-sdk","version":"1.64.0","main":"index.js"}' |
+            Set-Content -LiteralPath (Join-Path $sdk 'package.json') -Encoding UTF8
+          'class WSClient { constructor(options) { this.options = options; } }; module.exports = { WSClient };' |
+            Set-Content -LiteralPath (Join-Path $sdk 'index.js') -Encoding UTF8
+
+          $testScript = Join-Path $env:RUNNER_TEMP 'verify-feishu-preload.cjs'
+          @'
+          const path = require('node:path');
+          const { createRequire } = require('node:module');
+          const packagePath = path.join(process.env.HOME, '.openclaw', 'extensions', 'openclaw-lark', 'package.json');
+          const localRequire = createRequire(packagePath);
+          const sdk = localRequire('@larksuiteoapi/node-sdk');
+          const injected = new sdk.WSClient({ appId: 'test' });
+          const preserved = new sdk.WSClient({ wsConfig: { pingTimeout: 222, marker: true } });
+          if (injected.options.wsConfig.pingTimeout !== 150) throw new Error('default timeout was not injected');
+          if (preserved.options.wsConfig.pingTimeout !== 222) throw new Error('explicit timeout was overwritten');
+          if (preserved.options.wsConfig.marker !== true) throw new Error('existing wsConfig was not preserved');
+          console.log('Feishu preload test passed');
+          '@ | Set-Content -LiteralPath $testScript -Encoding UTF8
+
+          $env:HOME = $testHome
+          node --require "$PWD\feishu-ws-liveness-preload.cjs" $testScript
+
+      - name: Validate task wiring
+        shell: powershell
+        run: |
+          $setup = Get-Content -LiteralPath .\setup-task.ps1 -Raw
+          $runner = Get-Content -LiteralPath .\openclaw-task-runner.cmd -Raw
+          if ($setup -notmatch 'RestartCount 999') { throw 'Scheduled task restart policy is missing' }
+          if ($setup -notmatch 'openclaw-task-runner\.cmd') { throw 'Scheduled task does not launch the managed runner' }
+          if ($runner -notmatch 'feishu-ws-liveness-preload\.cjs') { throw 'Runner does not load the liveness shim' }
+          if ($runner -notmatch 'gateway\.cmd') { throw 'Runner does not launch gateway.cmd' }
